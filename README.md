@@ -1,1 +1,1 @@
-# DELU
+# DELU - TEAM
