@@ -28,6 +28,6 @@ Puedes conocer más sobre nosotros [aquí](https://delusional-team.github.io/#te
 - Calle Huamantinco, Luis Eduardo
 - Calongos Jara, Leonid
 - Flores Cóngora, Paolo Luis
-- Matthew Alexandre, Pariona Molina
-- Moreno Zevallos Eva Lucía
+- Pariona Molina, Matthew Alexandre
+- Calderón Matias, Diego Alonso 
 - Luján Vila Frank José
