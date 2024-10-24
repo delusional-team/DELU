@@ -1,14 +1,14 @@
 use rocket::http::uri::Origin;
 use dotenvy::dotenv;
-use std::env;
 use sqlx::Postgres;
 use sqlx::Pool;
 
 #[macro_use] extern crate rocket;
 
 mod db;
+mod api;
 
-const GPTHOLA: Origin<'static> = uri!("/longlaoshi");
+const GPTHOLA: Origin<'static> = uri!("/profesoft");
 
 #[get("/")]
 async fn index(pool: &rocket::State<Pool<Postgres>>) -> Result<&'static str, rocket::response::status::Custom<&'static str>> {
@@ -31,5 +31,6 @@ async fn rocket() -> _ {
 
     rocket::build()
         .manage(pool)
-        .mount("/", routes![index])
+        .mount(GPTHOLA, routes![index])
+        .mount(GPTHOLA, api::user_management::routes())
 }
