@@ -1,0 +1,195 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color: #333;
+    padding: 0;
+    margin: 0;
+}
+
+.header {
+    background-color: #1475b6;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 140px;
+}
+
+.logo img {
+    width: 260px;
+    height: 90px;
+}
+
+.nav-links a {
+
+    color: white;
+    margin-left: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.nav-links a:first-child {
+    margin-right: 50px; /* Aumentar la distancia entre el primer y el segundo enlace */
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.main-content {
+    padding: 10px;
+    max-width: 85%;
+    margin: 0 auto;
+    margin-top: 70px;
+}
+
+.professor-details{
+
+    margin-bottom: 10px; 
+    font-weight: bold;
+    border-bottom: 2.5px solid #ff9a00; /* Línea inferior opcional para destacar */
+    padding-bottom: 40px;
+
+}
+
+.professor-header {
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Asegura que el nombre y la calificación estén en extremos opuestos */
+    padding-bottom: 10px;
+    position: relative;
+
+}
+
+.professor-name {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #1475b6;
+    margin: 0;
+    padding-right: 20px; /* Espacio para la calificación */
+    position: relative;
+}
+
+.current-rating{
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #f4b21a;
+    margin: 0;
+}
+
+.current-rating .rating-value {
+    color: #1475b6;
+}
+
+/* Para crear la línea dorada que se extiende a la derecha */
+.professor-name::after {
+    content: "";
+    display: block;
+    height: 2px;
+    background-color: #f4b21a;
+    position: absolute;
+    bottom: -2px; /* Ajusta la posición vertical */
+    left: 100%; /* Empieza justo al final del nombre */
+    width: calc(1195px); /* Se extiende hacia la derecha */
+}
+
+.courses-section h3 {
+    color: #000000;
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 1em;
+    width: 15%;
+    margin-left: 11%; /* Ajusta la posición horizontal */
+}
+
+.courses-section p{
+
+    color: #000000;
+    margin-top: 15px;
+    font-size: 1em;
+    margin-left: 21%; /* Ajusta la posición horizontal */
+}
+
+/* Comentarios */
+.comments-section {
+
+    max-height: 400px; /* Limita la altura de la sección de comentarios */
+    overflow-y: auto;  /* Permite el desplazamiento vertical */
+    padding-right: 10px; /* Añade espacio para evitar el corte de contenido con la barra de desplazamiento */
+    border-radius: 5px;
+
+}
+
+/* Personalización de la barra de desplazamiento */
+.comments-section::-webkit-scrollbar {
+    width: 8px; /* Ancho de la barra de desplazamiento */
+}
+
+.comments-section::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color de fondo de la barra de desplazamiento */
+}
+
+.comments-section::-webkit-scrollbar-thumb {
+    background: #1475b6; /* Color de la parte de desplazamiento */
+    border-radius: 10px;
+}
+
+.comments-section::-webkit-scrollbar-thumb:hover {
+    background: #125a8e; /* Color cuando se pasa el mouse sobre el desplazamiento */
+}
+
+
+.comment {
+
+    padding: 5px 0;
+    
+}
+
+.commenter-name {
+
+    font-weight: bold;
+    font-size: 1em;
+    color: #1475b6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2.5px solid #ff9a00; /* Línea inferior opcional para destacar */
+
+}
+
+.rating-stars {
+
+    color: #ff9a00;
+    font-size: 1.1em;
+}
+
+.comment-text {
+
+    margin-top: 5px;
+    line-height: 1.5;
+    margin-left: 10%;
+
+}
+
+.sub-comment {
+
+    padding: 10px 20px;
+    background-color: #ffffff;
+    margin-top: 5px;
+ 
+}
+
+.sub-commenter-name {
+    font-weight: bold;
+    font-size: 1em;
+    color: #1475b6;
+    margin-left: 8.5%;
+}
+
+.sub-comment-text {
+    margin-top: 5px;
+    line-height: 1.5;
+    margin-left: 16%;
+}

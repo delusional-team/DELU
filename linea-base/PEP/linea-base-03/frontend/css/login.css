@@ -1,0 +1,168 @@
+/* Top layer donde se encuentra el contenido principal */
+.topLayer {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* Sección derecha (Login) */
+.right-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 63px; 
+}
+
+.right-section .content {
+    background: #ffffff;
+    padding: 60px; 
+    width: 90%; 
+    max-width: 600px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Añadido un gap para separar los elementos */
+    margin-bottom: 20px;
+}
+
+.logo {
+    position: relative;
+    top: -10px;
+    left: -10px;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    width: 260px;
+    height: 90px;
+}
+
+label {
+    font-size: 1.2em; /* Aumentar el tamaño relativo al contenedor */
+    color: rgba(9, 50, 97, 0.85);
+    font-weight: bold;
+    padding: 5px;
+}
+
+.email-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px; /* Espacio inferior */
+    border-bottom: 1px solid #333; /* Línea inferior */
+    padding: 0px 0 5px 0;
+}
+
+.email-wrapper input {
+    flex: 1;
+    border: none; /* Eliminar el borde estándar */
+    outline: none; /* Sin contorno al hacer foco */
+    padding: 5px 0;
+    font-size: 1em;
+    font-family: Arial, sans-serif;
+}
+
+.email-wrapper input::placeholder {
+    color: #aaaaaaaf; /* Color para el texto de marcador de posición */
+}
+
+.email-domain {
+    padding-left: 10px;
+    color: #7d7d7d; /* Color gris para el dominio */
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* Campo de contraseña con borde inferior */
+input[type="password"] {
+    width: 100%;
+    border: none; /* Sin borde estándar */
+    outline: none; /* Sin contorno */
+    border-bottom: 1px solid #333; /* Borde inferior */
+    padding: 5px 0;
+    margin-bottom: 30px;
+    font-size: 1em;
+    font-family: Arial, sans-serif;
+}
+
+/* Botón de inicio de sesión */
+.button-container {
+    text-align: center;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 25px; /* Aumentar el padding para hacerlo más proporcional */
+    background-color: rgba(9, 50, 97, 0.85);
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.6em; /* Hacer más grande la fuente */
+}
+
+.btn-primary:hover {
+    background-color: rgba(9, 50, 97, 0.85);
+}
+
+.form-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.form-links a {
+    font-size: 1.1em; /* Aumentado para ser proporcional al nuevo tamaño del contenedor */
+    color: rgba(9, 50, 97, 0.85);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.form-links a:hover {
+    text-decoration: underline;
+}
+
+/* Sección izquierda */
+.left-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    position: relative;
+}
+
+.left-section .content {
+    text-align: relative;
+}
+
+.container-frase {
+    position: relative;
+    top: 280px; /* Mueve el contenedor 20px hacia abajo */
+    left: 140px; /* Mueve el contenedor 10px hacia la derecha */
+    background-color: #0056b3; /* Fondo azul */
+    padding: 20px 180px; /* Espacio interno */
+    border-radius: 5px; /* Bordes redondeados */
+    text-align: center;
+    max-width: 100%;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); /* Sombra para darle profundidad */
+}
+
+/* Estilos para el texto de la frase */
+.container-frase p {
+    color: #ffffff; /* Texto en blanco */
+    font-size: 1.6em; /* Tamaño del texto */
+    font-style: italic; 
+    font-family: Arial, sans-serif;
+    font-weight: bold;/* Texto en negrita */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Sombra del texto */
+    margin: 0; /* Eliminar el margen por defecto del párrafo */
+}
