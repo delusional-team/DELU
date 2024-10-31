@@ -1,0 +1,192 @@
+
+.logo {
+    position: relative;
+    top: 15.5%;
+    left: 12.5%;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    width: 260px;
+    height: 90px;
+    
+}
+
+
+/* Contenedor principal del formulario */
+.form-container {
+    background: #ffffff;
+    position: relative;
+    top: 10%;
+    left: center;
+    padding: 40px 80px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    max-width: 75%;
+    margin: 50px auto;
+}
+
+/* Título del formulario */
+
+.form-title {
+    font-size: 3em;
+    color: #1475b6;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #1475b6;
+    padding-bottom: 10px;
+}
+
+/* Filas del formulario */
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+/* Grupo de cada campo del formulario */
+.form-group {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.form-group:last-child {
+    margin-right: 0;
+}
+
+label {
+
+    display: inline-block;
+    font-size: 1.2em;
+    color: #1475b6;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    border: none; /* Sin borde estándar */
+    outline: none; /* Sin contorno */
+    border-bottom: 1px solid #333; /* Borde inferior */
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+
+/* Wrapper para el campo de email y el dominio */
+.email-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.email-wrapper input {
+    width: 100%;
+    padding: 10px;
+    padding-right: 100px; /* Dejar espacio para el dominio */
+    border: none;
+    border-bottom: 1px solid #333;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.email-domain {
+    position: absolute;
+    top: 10px; /* Ajustar para posicionar sobre la línea */
+    right: 0;
+    padding: 0 5px;
+    font-size: 1.2em;
+    color: #888;
+    font-weight: bold;
+}
+
+/* Estilo del checkbox "Mostrar contraseña" */
+.show-password {
+    position: relative;
+    left: 80%;
+    color: rgba(9, 50, 97, 0.85);
+    font-weight: bold;
+    display: flex;
+    align-items: center; /* Alinea verticalmente el checkbox con el texto */
+    font-size: 12px;
+    margin-bottom: 10px;
+    margin-top: -10px; /* Ajusta para que quede más cerca del campo de contraseña */
+}
+
+.show-password input[type="checkbox"] {
+    margin-right: 5px; /* Espacio entre el checkbox y el texto */
+}
+
+/* Ajustes para las filas del formulario */
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 110px; /* Espacio entre las columnas */
+}
+
+.form-group {
+    flex: 1;
+}
+
+/* Estilo de los subtítulos "Política de Privacidad" y "Términos y Condiciones de Uso" */
+.terms-subtitle {
+    margin-bottom: 20px; /* Espacio inferior para separar de los checkboxes */
+    font-weight: bold;
+    color: #0056b3; /* Color azul para los enlaces */
+    font-size: 14px;
+}
+
+.terms-link {
+
+    display: block; /* Hacer que cada enlace ocupe su propia línea */
+    color: #0056b3;
+    text-decoration: none;
+    margin-bottom: 5px; /* Espacio entre los enlaces */
+
+}
+
+.terms-link:hover {
+    text-decoration: underline;
+}
+
+/* Ajustes para los checkboxes y etiquetas */
+.form-terms {
+    margin-bottom: 20px;
+}
+
+/* Ajuste de las etiquetas del checkbox */
+.form-terms label {
+    font-size: 12px; 
+    color: #333; 
+    line-height: 1.5; 
+    font-weight: normal;
+    margin-left: 5px;
+    font-weight: bold; 
+}
+
+/* Ajuste de los checkboxes */
+.form-terms input[type="checkbox"] {
+    transform: scale(1.5); 
+    margin-right: 10px; 
+    vertical-align: middle; 
+}
+
+.btn-register {
+
+    margin-top: 80px; /* Ajusta para que quede más cerca del campo de contraseña */
+    padding: 20px;
+    width: 100%;
+    background-color:  #1475b6;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 2em;
+    transition: background-color 0.3s ease;
+}
+
+.btn-register:hover {
+    background-color:  #1475b6;
+}
