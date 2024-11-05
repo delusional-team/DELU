@@ -6,6 +6,12 @@ use sqlx::Postgres;
 use sqlx::Pool;
 use uuid::Uuid;
 
+use hmac::{Hmac, Mac};
+use jwt::SignWithKey;
+use sha2::Sha256;
+use std::collections::BTreeMap;
+use std::env;
+
 use rocket::serde::Deserialize;
 use serde::Serialize;
 
@@ -14,7 +20,7 @@ use argon2::{
         rand_core::OsRng,
         PasswordHasher, SaltString
     },
-    Argon2
+    Argon2,
 };
 
 use super::mail;
@@ -41,17 +47,36 @@ pub struct AppUser {
     active: bool,
     is_admin: bool,
     is_banned: bool,
-    verification_token: String,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
-struct LoginUserPayload {
+struct LoginPayload {
     email: String,
     password: String,
 }
 
+#[derive(Serialize)]
+struct LoginResponse {
+    message: &'static str,
+    token: String,
+}
+
 pub fn routes() -> Vec<Route> {
     routes![create_user, options, verify_user, login_user]
+}
+
+fn generate_token(subject: &str) -> Result<String, Box<dyn std::error::Error>> {
+    let secret = env::var("JWT_SECRET")?;
+    let key: Hmac<Sha256> = Hmac::new_from_slice(secret.as_bytes())?;
+    let mut claims = BTreeMap::new();
+    claims.insert("sub", subject);
+
+    let expiration = (chrono::Utc::now().timestamp() + 6 * 3600) as u64; // 6 hours in seconds
+    let binding = expiration.to_string();
+    claims.insert("exp", &binding);
+
+    let token_str = claims.sign_with_key(&key)?;
+    Ok(token_str)
 }
 
 // Function to hash the password with the generated salt
@@ -86,7 +111,7 @@ async fn create_user(pool: &State<Pool<Postgres>>, new_user: Json<NewUserPayload
     match result {
         Ok(_) => {
             // TODO: Change the hostname
-            let verification_url = format!("https://localhost:8000/verify?token={}", verification_token);
+            let verification_url = format!("http://localhost:8000/profesoft/verify?token={}", verification_token);
             mail::send_email(&new_user.email, &verification_url);
             Ok(Status::Created)
         },
@@ -136,8 +161,7 @@ async fn verify_user(pool: &State<Pool<Postgres>>, token: String) -> Result<Stat
 }
 
 #[post("/login", data = "<user>")]
-async fn login_user(pool: &State<Pool<Postgres>>, user: Json<LoginUserPayload>) -> Result<Status, Status>{
-    // Query the database to find a user with the provided token
+async fn login_user(pool: &State<Pool<Postgres>>, user: Json<LoginPayload>) -> Result<Json<LoginResponse>, Status> {
     let result = query!(
         r#"
         SELECT hashed_pass, salt, active FROM users WHERE email = $1
@@ -148,23 +172,24 @@ async fn login_user(pool: &State<Pool<Postgres>>, user: Json<LoginUserPayload>) 
     .await;
 
     match result {
-        Ok(Some(record)) => {
-            if record.active == false {
-                Err(Status::NotAcceptable)
+        Ok(Some(record)) if record.active => {
+            let old_salt = SaltString::from_b64(&record.salt).map_err(|_| Status::InternalServerError)?;
+            let verify_pass = hash_pass(&user.password, &old_salt);
+
+            if verify_pass == record.hashed_pass {
+                let token = generate_token(&user.email).map_err(|_| Status::InternalServerError)?;
+
+                let response = LoginResponse {
+                    message: "Login successful",
+                    token,
+                };
+                Ok(Json(response))
             } else {
-                let old_salt = SaltString::from_b64(&record.salt).map_err(|_| Status::InternalServerError)?;
-                let verify_pass = hash_pass(&user.password, &old_salt);
-                if verify_pass == record.hashed_pass {
-                    return Ok(Status::Ok)
-                } else {
-                    return Err(Status::InternalServerError)
-                }
+                Err(Status::Unauthorized)
             }
         }
-        Ok(None) => {
-            // No existe tal email
-            Err(Status::NotFound)
-        }
+        Ok(Some(_)) => Err(Status::NotAcceptable), // User not active
+        Ok(None) => Err(Status::NotFound), // No user found
         Err(_) => Err(Status::InternalServerError),
     }
 }
@@ -179,9 +204,9 @@ fn default_active() -> bool {
 }
 
 fn default_is_admin() -> bool {
-    false 
+    false
 }
 
 fn default_is_banned() -> bool {
-    false 
+    false
 }

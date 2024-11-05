@@ -1,3 +1,4 @@
 DATABASE_URL=postgres://username:password@hostname:port/dbname
 EMAIL=
 PASSWORD=
+JWT_SECRET=supersecret
