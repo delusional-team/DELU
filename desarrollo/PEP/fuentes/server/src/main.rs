@@ -7,7 +7,7 @@ use sqlx::Pool;
 
 mod db;
 mod api;
-// mod guards;
+mod guards;
 
 const GPTHOLA: Origin<'static> = uri!("/profesoft");
 
@@ -20,7 +20,6 @@ async fn index(pool: &rocket::State<Pool<Postgres>>) -> Result<&'static str, roc
         Err(_) => Err(rocket::response::status::Custom(rocket::http::Status::InternalServerError, "Failed to execute test query")),
     }
 }
-
 
 #[launch]
 async fn rocket() -> _ {
