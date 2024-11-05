@@ -38,15 +38,17 @@ struct NewUserPayload {
     is_banned: bool,
 }
 
+#[allow(dead_code)]
 pub struct AppUser {
-    id: i32,
-    name: String,
-    email: String,
-    hashed_pass: String,
-    salt: String,
-    active: bool,
-    is_admin: bool,
-    is_banned: bool,
+    pub id: i32,
+    pub name: String,
+    pub email: String,
+    pub hashed_pass: String,
+    pub salt: String,
+    pub active: bool,
+    pub is_admin: bool,
+    pub is_banned: bool,
+    pub verification_token: Option<String>,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
@@ -71,7 +73,7 @@ fn generate_token(subject: &str) -> Result<String, Box<dyn std::error::Error>> {
     let mut claims = BTreeMap::new();
     claims.insert("sub", subject);
 
-    let expiration = (chrono::Utc::now().timestamp() + 6 * 3600) as u64; // 6 hours in seconds
+    let expiration = (chrono::Utc::now().timestamp() + 24 * 3600) as u64; // 6 hours in seconds
     let binding = expiration.to_string();
     claims.insert("exp", &binding);
 
@@ -117,13 +119,13 @@ async fn create_user(pool: &State<Pool<Postgres>>, new_user: Json<NewUserPayload
         },
         Err(e) => {
             println!("Failed to insert user: {:?}", e);
-            Err(Status::InternalServerError)
+            Err(Status::Conflict)
         }
     }
 }
 
 #[get("/verify?<token>")]
-async fn verify_user(pool: &State<Pool<Postgres>>, token: String) -> Result<Status, Status>{
+async fn verify_user(pool: &State<Pool<Postgres>>, token: String) -> Result<&str, Status>{
     // Query the database to find a user with the provided token
     let result = query!(
         r#"
@@ -134,8 +136,10 @@ async fn verify_user(pool: &State<Pool<Postgres>>, token: String) -> Result<Stat
     .fetch_optional(pool.inner())
     .await;
 
+
     match result {
         Ok(Some(record)) => {
+            println!("got user {result}", result=record.id);
             // Token is valid, update the user to be active
             let update_result = query!(
                 r#"
@@ -148,7 +152,7 @@ async fn verify_user(pool: &State<Pool<Postgres>>, token: String) -> Result<Stat
             .await;
 
             match update_result {
-                Ok(_) => Ok(Status::Ok),
+                Ok(_) => Ok("Verificación exitosa 🎉🎉🎉 Ya puedes volver a ProfeSoft"),
                 Err(_) => Err(Status::InternalServerError),
             }
         }
@@ -156,7 +160,7 @@ async fn verify_user(pool: &State<Pool<Postgres>>, token: String) -> Result<Stat
             // Token was not found
             Err(Status::NotFound)
         }
-        Err(_) => Err(Status::InternalServerError),
+        Err(_) => Err(Status::NotFound),
     }
 }
 
