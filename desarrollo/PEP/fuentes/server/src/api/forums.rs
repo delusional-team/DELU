@@ -4,6 +4,8 @@ use rocket::http::Status;
 use sqlx::{query, Pool, Postgres};
 use serde::{Deserialize, Serialize};
 
+use super::user_management::AppUser;
+
 #[derive(Debug, Deserialize, Serialize)]
 struct ForumPost {
     id: i32,
@@ -34,7 +36,7 @@ struct Comment {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
-struct NewComment {
+struct NewCommentPayload {
     text: String,
 }
 
@@ -98,11 +100,11 @@ async fn get_forum_post(pool: &State<Pool<Postgres>>, id: i32) -> Result<Json<Fo
     Ok(Json(post))
 }
 
-#[post("/forum/posts?<user_id>", data = "<new_post>")]
+#[post("/forum/posts", data = "<new_post>")]
 async fn create_forum_post(
     pool: &State<Pool<Postgres>>,
     new_post: Json<NewForumPost>,
-    user_id: i32, // TODO: use auth guard
+    user: AppUser,
 ) -> Result<Status, Status> {
     query!(
         r#"
@@ -111,7 +113,7 @@ async fn create_forum_post(
         "#,
         new_post.title,
         new_post.content,
-        user_id
+        user.id,
     )
     .execute(pool.inner())
     .await
@@ -154,12 +156,12 @@ async fn get_comments_for_post(
     Ok(Json(data))
 }
 
-#[post("/forum/posts/<id>/comments?<user_id>", data = "<new_comment>")]
+#[post("/forum/posts/<id>/comments", data = "<new_comment>")]
 async fn create_comment_for_post(
     pool: &State<Pool<Postgres>>,
     id: i32,
-    new_comment: Json<NewComment>,
-    user_id: i32, // TODO: use auth guard
+    new_comment: Json<NewCommentPayload>,
+    user: AppUser,
 ) -> Result<Status, Status> {
     // Check if the post exists first
     query!("SELECT id FROM forum WHERE id = $1", id)
@@ -173,7 +175,7 @@ async fn create_comment_for_post(
         VALUES ($1, 0, $2, $3)
         "#,
         new_comment.text,
-        user_id,
+        user.id,
         id
     )
     .execute(pool.inner())
