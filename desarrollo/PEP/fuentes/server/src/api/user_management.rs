@@ -20,7 +20,7 @@ use argon2::{
         rand_core::OsRng,
         PasswordHasher, SaltString
     },
-    Argon2
+    Argon2,
 };
 
 use super::mail;
@@ -47,11 +47,10 @@ pub struct AppUser {
     active: bool,
     is_admin: bool,
     is_banned: bool,
-    verification_token: String,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
-struct LoginUserPayload {
+struct LoginPayload {
     email: String,
     password: String,
 }
@@ -162,8 +161,7 @@ async fn verify_user(pool: &State<Pool<Postgres>>, token: String) -> Result<Stat
 }
 
 #[post("/login", data = "<user>")]
-async fn login_user(pool: &State<Pool<Postgres>>, user: Json<LoginUserPayload>) -> Result<Status, Status>{
-    // Query the database to find a user with the provided token
+async fn login_user(pool: &State<Pool<Postgres>>, user: Json<LoginPayload>) -> Result<Json<LoginResponse>, Status> {
     let result = query!(
         r#"
         SELECT hashed_pass, salt, active FROM users WHERE email = $1
@@ -206,9 +204,9 @@ fn default_active() -> bool {
 }
 
 fn default_is_admin() -> bool {
-    false 
+    false
 }
 
 fn default_is_banned() -> bool {
-    false 
+    false
 }
