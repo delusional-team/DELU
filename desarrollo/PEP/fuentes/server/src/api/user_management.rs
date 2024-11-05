@@ -20,7 +20,7 @@ use argon2::{
 use super::mail;
 
 #[derive(Debug, Deserialize, Serialize)]
-struct NewUser {
+struct NewUserPayload {
     name: String,
     email: String,
     password: String,
@@ -32,8 +32,20 @@ struct NewUser {
     is_banned: bool,
 }
 
+pub struct AppUser {
+    id: i32,
+    name: String,
+    email: String,
+    hashed_pass: String,
+    salt: String,
+    active: bool,
+    is_admin: bool,
+    is_banned: bool,
+    verification_token: String,
+}
+
 #[derive(Debug, Deserialize, Serialize)]
-struct LogUser {
+struct LoginUserPayload {
     email: String,
     password: String,
 }
@@ -49,7 +61,7 @@ fn hash_pass(password: &str, salt: &SaltString) -> String {
 }
 
 #[post("/register", data = "<new_user>")]
-async fn create_user(pool: &State<Pool<Postgres>>, new_user: Json<NewUser>) -> Result<Status, Status>{
+async fn create_user(pool: &State<Pool<Postgres>>, new_user: Json<NewUserPayload>) -> Result<Status, Status>{
     let salt = SaltString::generate(&mut OsRng);
     let hashed_pass = hash_pass(&new_user.password, &salt);
     let verification_token = Uuid::new_v4().to_string();
@@ -124,7 +136,7 @@ async fn verify_user(pool: &State<Pool<Postgres>>, token: String) -> Result<Stat
 }
 
 #[post("/login", data = "<user>")]
-async fn login_user(pool: &State<Pool<Postgres>>, user: Json<LogUser>) -> Result<Status, Status>{
+async fn login_user(pool: &State<Pool<Postgres>>, user: Json<LoginUserPayload>) -> Result<Status, Status>{
     // Query the database to find a user with the provided token
     let result = query!(
         r#"

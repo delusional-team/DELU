@@ -7,6 +7,7 @@ use sqlx::Pool;
 
 mod db;
 mod api;
+// mod guards;
 
 const GPTHOLA: Origin<'static> = uri!("/profesoft");
 
@@ -33,4 +34,5 @@ async fn rocket() -> _ {
         .manage(pool)
         .mount(GPTHOLA, routes![index])
         .mount(GPTHOLA, api::user_management::routes())
+        .mount(GPTHOLA, api::forums::routes())
 }
