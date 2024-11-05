@@ -20,7 +20,8 @@ CREATE TABLE IF NOT EXISTS "users" (
   "salt" VARCHAR(255) NOT NULL,
   "active" bool NOT NULL,
   "is_admin" bool NOT NULL,
-  "is_banned" bool NOT NULL
+  "is_banned" bool NOT NULL,
+  "verification_token" text
 );
 
 CREATE TABLE IF NOT EXISTS "courses" (
