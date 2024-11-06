@@ -9,7 +9,7 @@ mod db;
 mod api;
 mod guards;
 
-const GPTHOLA: Origin<'static> = uri!("/profesoft");
+const PROFESOFT: Origin<'static> = uri!("/profesoft");
 
 #[get("/")]
 async fn index(pool: &rocket::State<Pool<Postgres>>) -> Result<&'static str, rocket::response::status::Custom<&'static str>> {
@@ -31,7 +31,8 @@ async fn rocket() -> _ {
 
     rocket::build()
         .manage(pool)
-        .mount(GPTHOLA, routes![index])
-        .mount(GPTHOLA, api::user_management::routes())
-        .mount(GPTHOLA, api::forums::routes())
+        .mount(PROFESOFT, routes![index])
+        .mount(PROFESOFT, api::user_management::routes())
+        .mount(PROFESOFT, api::forums::routes())
+        .mount(PROFESOFT, api::professors::routes())
 }
