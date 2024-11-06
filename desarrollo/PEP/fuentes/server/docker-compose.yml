@@ -1,0 +1,43 @@
+services:
+  # The PostgreSQL service
+  postgres:
+    image: 'postgres:latest'
+    container_name: profesoftDB
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: profesoftDB
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    networks:
+      - profesoft-network
+
+  # The Rust server service
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile  # Adjust this if your Dockerfile is named something else
+    container_name: server-profesoft
+    env_file:
+      - .env
+    ports:
+      - "6969:6969"
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      EMAIL: ${EMAIL}
+      PASSWORD : ${PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      HOST: ${HOST}
+    depends_on:
+      - postgres
+    networks:
+      - profesoft-network
+    restart: always
+
+networks:
+  profesoft-network:
+    driver: bridge

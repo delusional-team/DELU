@@ -1,5 +1,5 @@
 [package]
-name = "server"
+name = "serverProfesoft"
 version = "0.1.0"
 edition = "2021"
 
@@ -28,3 +28,7 @@ features = [
     "fast-rng",          # Use a faster (but still sufficiently random) RNG
     "macro-diagnostics", # Enable better diagnostics for compile-time UUIDs
 ]
+
+[[bin]]
+name = "serverProfesoft"
+path = "src/main.rs"
