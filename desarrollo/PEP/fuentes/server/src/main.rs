@@ -3,13 +3,17 @@ use dotenvy::dotenv;
 use sqlx::Postgres;
 use sqlx::Pool;
 
+use rocket::config::{Ident, LogLevel};
+use rocket::data::{Limits, ToByteUnit};
+use rocket::Config;
+
 #[macro_use] extern crate rocket;
 
 mod db;
 mod api;
 mod guards;
 
-const GPTHOLA: Origin<'static> = uri!("/profesoft");
+const PROFESOFT: Origin<'static> = uri!("/profesoft");
 
 #[get("/")]
 async fn index(pool: &rocket::State<Pool<Postgres>>) -> Result<&'static str, rocket::response::status::Custom<&'static str>> {
@@ -21,17 +25,30 @@ async fn index(pool: &rocket::State<Pool<Postgres>>) -> Result<&'static str, roc
     }
 }
 
+pub const PORT: u16 = 6969;
+
 #[launch]
 async fn rocket() -> _ {
     dotenv().expect("No .env file");
 
+    let config = Config {
+        port: PORT,
+        address: [0, 0, 0, 0].into(),
+        ident: Ident::none(),
+        log_level: LogLevel::Normal,
+        limits: Limits::new()
+            .limit("forms", 16.mebibytes())
+            .limit("json", 32.mebibytes()),
+        ..Config::default()
+    };
     let database_url = std::env::var("DATABASE_URL").expect("DATABASE_URL must be set");
-
     let pool = db::pool::create_pool(&database_url).await.unwrap();
 
     rocket::build()
+        .configure(config)
         .manage(pool)
-        .mount(GPTHOLA, routes![index])
-        .mount(GPTHOLA, api::user_management::routes())
-        .mount(GPTHOLA, api::forums::routes())
+        .mount(PROFESOFT, routes![index])
+        .mount(PROFESOFT, api::user_management::routes())
+        .mount(PROFESOFT, api::forums::routes())
+        .mount(PROFESOFT, api::professors::routes())
 }

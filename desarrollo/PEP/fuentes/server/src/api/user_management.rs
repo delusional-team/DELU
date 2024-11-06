@@ -73,7 +73,7 @@ fn generate_token(subject: &str) -> Result<String, Box<dyn std::error::Error>> {
     let mut claims = BTreeMap::new();
     claims.insert("sub", subject);
 
-    let expiration = (chrono::Utc::now().timestamp() + 24 * 3600) as u64; // 6 hours in seconds
+    let expiration = (chrono::Utc::now().timestamp() + 6 * 3600) as u64; // 6 hours in seconds
     let binding = expiration.to_string();
     claims.insert("exp", &binding);
 
@@ -112,8 +112,8 @@ async fn create_user(pool: &State<Pool<Postgres>>, new_user: Json<NewUserPayload
 
     match result {
         Ok(_) => {
-            // TODO: Change the hostname
-            let verification_url = format!("http://localhost:8000/profesoft/verify?token={}", verification_token);
+            let host = std::env::var("HOST").unwrap();
+            let verification_url = format!("{}/verify?token={}", host, verification_token);
             mail::send_email(&new_user.email, &verification_url);
             Ok(Status::Created)
         },
