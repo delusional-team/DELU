@@ -7,6 +7,7 @@ use sqlx::Pool;
 
 mod db;
 mod api;
+mod guards;
 
 const GPTHOLA: Origin<'static> = uri!("/profesoft");
 
@@ -20,7 +21,6 @@ async fn index(pool: &rocket::State<Pool<Postgres>>) -> Result<&'static str, roc
     }
 }
 
-
 #[launch]
 async fn rocket() -> _ {
     dotenv().expect("No .env file");
@@ -33,4 +33,5 @@ async fn rocket() -> _ {
         .manage(pool)
         .mount(GPTHOLA, routes![index])
         .mount(GPTHOLA, api::user_management::routes())
+        .mount(GPTHOLA, api::forums::routes())
 }

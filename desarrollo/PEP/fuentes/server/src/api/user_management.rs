@@ -20,13 +20,13 @@ use argon2::{
         rand_core::OsRng,
         PasswordHasher, SaltString
     },
-    Argon2
+    Argon2,
 };
 
 use super::mail;
 
 #[derive(Debug, Deserialize, Serialize)]
-struct NewUser {
+struct NewUserPayload {
     name: String,
     email: String,
     password: String,
@@ -38,8 +38,21 @@ struct NewUser {
     is_banned: bool,
 }
 
+#[allow(dead_code)]
+pub struct AppUser {
+    pub id: i32,
+    pub name: String,
+    pub email: String,
+    pub hashed_pass: String,
+    pub salt: String,
+    pub active: bool,
+    pub is_admin: bool,
+    pub is_banned: bool,
+    pub verification_token: Option<String>,
+}
+
 #[derive(Debug, Deserialize, Serialize)]
-struct LogUser {
+struct LoginPayload {
     email: String,
     password: String,
 }
@@ -75,7 +88,7 @@ fn hash_pass(password: &str, salt: &SaltString) -> String {
 }
 
 #[post("/register", data = "<new_user>")]
-async fn create_user(pool: &State<Pool<Postgres>>, new_user: Json<NewUser>) -> Result<Status, Status>{
+async fn create_user(pool: &State<Pool<Postgres>>, new_user: Json<NewUserPayload>) -> Result<Status, Status>{
     let salt = SaltString::generate(&mut OsRng);
     let hashed_pass = hash_pass(&new_user.password, &salt);
     let verification_token = Uuid::new_v4().to_string();
@@ -106,13 +119,13 @@ async fn create_user(pool: &State<Pool<Postgres>>, new_user: Json<NewUser>) -> R
         },
         Err(e) => {
             println!("Failed to insert user: {:?}", e);
-            Err(Status::InternalServerError)
+            Err(Status::Conflict)
         }
     }
 }
 
 #[get("/verify?<token>")]
-async fn verify_user(pool: &State<Pool<Postgres>>, token: String) -> Result<Status, Status>{
+async fn verify_user(pool: &State<Pool<Postgres>>, token: String) -> Result<&str, Status>{
     // Query the database to find a user with the provided token
     let result = query!(
         r#"
@@ -123,8 +136,10 @@ async fn verify_user(pool: &State<Pool<Postgres>>, token: String) -> Result<Stat
     .fetch_optional(pool.inner())
     .await;
 
+
     match result {
         Ok(Some(record)) => {
+            println!("got user {result}", result=record.id);
             // Token is valid, update the user to be active
             let update_result = query!(
                 r#"
@@ -137,7 +152,7 @@ async fn verify_user(pool: &State<Pool<Postgres>>, token: String) -> Result<Stat
             .await;
 
             match update_result {
-                Ok(_) => Ok(Status::Ok),
+                Ok(_) => Ok("Verificación exitosa 🎉🎉🎉 Ya puedes volver a ProfeSoft"),
                 Err(_) => Err(Status::InternalServerError),
             }
         }
@@ -145,12 +160,12 @@ async fn verify_user(pool: &State<Pool<Postgres>>, token: String) -> Result<Stat
             // Token was not found
             Err(Status::NotFound)
         }
-        Err(_) => Err(Status::InternalServerError),
+        Err(_) => Err(Status::NotFound),
     }
 }
 
 #[post("/login", data = "<user>")]
-async fn login_user(pool: &State<Pool<Postgres>>, user: Json<LogUser>) -> Result<Json<LoginResponse>, Status> {
+async fn login_user(pool: &State<Pool<Postgres>>, user: Json<LoginPayload>) -> Result<Json<LoginResponse>, Status> {
     let result = query!(
         r#"
         SELECT hashed_pass, salt, active FROM users WHERE email = $1
@@ -193,9 +208,9 @@ fn default_active() -> bool {
 }
 
 fn default_is_admin() -> bool {
-    false 
+    false
 }
 
 fn default_is_banned() -> bool {
-    false 
+    false
 }
