@@ -1,0 +1,46 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        SELECT c.id, c.text, c.upvotes, u.id AS user_id, u.name AS user_name\n        FROM comments c\n        JOIN users u ON c.user_id = u.id\n        WHERE c.forum_id = $1\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 1,
+        "name": "text",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "upvotes",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 3,
+        "name": "user_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 4,
+        "name": "user_name",
+        "type_info": "Varchar"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Int4"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "d838fcfde4209607008e5319e70091cb286b031393fd31074b8e7bd3d22f4c27"
+}

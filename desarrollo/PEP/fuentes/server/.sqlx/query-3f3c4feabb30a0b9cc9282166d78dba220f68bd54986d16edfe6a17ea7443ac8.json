@@ -1,0 +1,16 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        INSERT INTO forum (title, content, user_id, upvotes, date)\n        VALUES ($1, $2, $3, 0, CURRENT_DATE)\n        ",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Varchar",
+        "Varchar",
+        "Int4"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "3f3c4feabb30a0b9cc9282166d78dba220f68bd54986d16edfe6a17ea7443ac8"
+}

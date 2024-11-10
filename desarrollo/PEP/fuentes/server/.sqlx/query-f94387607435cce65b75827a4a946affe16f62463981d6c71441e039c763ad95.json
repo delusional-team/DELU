@@ -1,0 +1,34 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        SELECT hashed_pass, salt, active FROM users WHERE email = $1\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "hashed_pass",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 1,
+        "name": "salt",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "active",
+        "type_info": "Bool"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "f94387607435cce65b75827a4a946affe16f62463981d6c71441e039c763ad95"
+}
