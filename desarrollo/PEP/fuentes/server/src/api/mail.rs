@@ -7,7 +7,7 @@ pub fn send_email(recipient_email: &str, verification_link: &str) {
         .from("FisiBot <fisibot986@gmail.com>".parse().unwrap())
         .reply_to("Support <fisibot986@gmail.com>".parse().unwrap())
         .to(recipient_email.parse().unwrap())
-        .subject("Verificación de Email")
+        .subject("Verificación de email")
         .header(ContentType::TEXT_HTML)
         .body(format!(
             "<p>Si este eres tú, verifica tu cuenta haciendo click al siguiente link:</p>
