@@ -1,21 +1,4 @@
 services:
-  # The PostgreSQL service
-  postgres:
-    image: 'postgres:latest'
-    container_name: profesoftDB
-    env_file:
-      - .env
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: profesoftDB
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    networks:
-      - profesoft-network
-
   # The Rust server service
   server:
     build:
@@ -32,15 +15,20 @@ services:
       PASSWORD : ${PASSWORD}
       JWT_SECRET: ${JWT_SECRET}
       HOST: ${HOST}
-    depends_on:
-      - postgres
-    networks:
-      - profesoft-network
     restart: always
+
+  pep_postgres:
+    image: 'postgres:latest'
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: profesoftDB
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
 
 volumes:
   postgres_data:
-  
-networks:
-  profesoft-network:
-    driver: bridge
