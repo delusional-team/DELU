@@ -16,7 +16,9 @@ RUN rustup default nightly
 WORKDIR /app
 
 # Copy the Cargo.toml and Cargo.lock files to fetch dependencies
-COPY Cargo.toml Cargo.lock ./
+COPY Cargo.toml Cargo.lock .sqlx ./
+
+ENV SQLX_OFFLINE=true
 
 RUN cargo fetch
 
@@ -36,5 +38,7 @@ WORKDIR /app
 COPY --from=builder /app/target/release/serverProfesoft /app/
 
 COPY .env .env
+
+ENV SQLX_OFFLINE=false
 
 CMD ["/app/serverProfesoft"]
