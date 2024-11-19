@@ -3,7 +3,7 @@ services:
   server:
     build:
       context: .
-      dockerfile: Dockerfile  # Adjust this if your Dockerfile is named something else
+      dockerfile: ./docker/Dockerfile  # Adjust this if your Dockerfile is named something else
     container_name: server-profesoft
     env_file:
       - .env
