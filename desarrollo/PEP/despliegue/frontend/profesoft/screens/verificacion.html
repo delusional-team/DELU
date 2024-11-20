@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profesoft - Iniciar Sesión</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/verificacion.css">
+</head>
+
+<body> 
+    <!-- Container para la sección de fondo -->
+    <div class="container">
+        <div class="background-right"></div>
+        <div class="background-left"></div>
+    </div>
+
+    <!-- Container para el SlideBox que maneja el Login y el Sign Up -->
+    <div id="slideBox" class="container">
+        <div class="topLayer">
+            <!-- Sección izquierda: Login -->
+            <div class="right-section">
+                <div class="content">
+
+                    <form class="form">
+                        <div class="logo">
+                            <img src="img\logo.png" alt="Logo 1">
+                        </div>
+                        <div class="title">Verificación de seguridad adicional</div>
+                        <p class="message">Escriba el código de verificación que se muestra en aplicación.</p>
+                      
+                        <!-- Contenedor adicional para inputs y botón -->
+                       
+                        <div class="inputs">
+                            <label for="input1"></label>
+                            <input id="input1" type="text" maxlength="1" />
+
+                            <label for="input2"></label>
+                            <input id="input2" type="text" maxlength="1" />
+
+                            <label for="input3"></label>
+                            <input id="input3" type="text" maxlength="1" />
+
+                            <label for="input4"></label>
+                            <input id="input4" type="text" maxlength="1" />
+
+                            <label for="input5"></label>
+                            <input id="input5" type="text" maxlength="1" />
+
+                            <label for="input6"></label>
+                            <input id="input6" type="text" maxlength="1" />
+                        </div>
+
+                        <button type="button" class="action" onclick="location.href='/screens/busqueda.html'">Aceptar</button>   
+                      
+                        <p class="error-message" style="display: none;">Código incorrecto. Por favor, inténtelo de nuevo.</p>
+                      
+                        <p class="resend-message">¿No recibiste el código? <a href="#">Reenviar</a></p>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sección derecha -->
+            <div class="left-section">
+                <div class="content">
+                    <div class="container-frase">
+                        <p>Tu opinión, tu aprendizaje.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>

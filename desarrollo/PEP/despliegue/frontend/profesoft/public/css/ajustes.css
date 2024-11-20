@@ -1,0 +1,213 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color: #333;
+    padding: 0;
+    margin: 0;
+}
+
+.header {
+    background-color: #1475b6;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 140px;
+}
+
+.logo img {
+    width: 260px;
+    height: 90px;
+}
+
+.nav-links a {
+
+    color: white;
+    margin-left: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.nav-links a:first-child {
+    margin-right: 50px; 
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.settings-container {
+
+    padding: 5px;
+    max-width: 85%;
+    margin: 0 auto;
+    margin-top: 80px;
+
+}
+
+.settings-title {
+
+    font-size: 28px;
+    color: #1475b6;
+    margin-bottom: 20px;
+    border-bottom: 2.5px solid #ff9a00;
+    padding-bottom: 5px;
+
+}
+
+.settings-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+
+}
+
+.left-section {
+    
+    width: 55%;
+
+}
+
+.right-section{
+
+    width: 35%;
+
+}
+
+.left-section h3 {
+    font-size: 18px;
+    color: #000000;
+    margin-bottom: 15px;
+    margin-top: 50px;
+}
+
+.left-section label{
+
+    font-size: 18px;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.notification-option {
+    
+    display: grid;
+    grid-template-columns: auto 40px; /* Ajusta el ancho del checkbox */
+    align-items: center;
+    background-color: #d3d7d9; /* Color de fondo ajustado */
+    height: 60px;
+    padding: 0px 20px;
+
+}
+
+.notification-options {
+    
+    display: grid;
+    grid-template-columns: auto 40px; /* Ajusta el ancho del checkbox */
+    align-items: center;
+    background-color: #ffffff; /* Color de fondo ajustado */
+    padding: 0px 20px;
+
+}
+
+.notification-option input[type="checkbox"] {
+
+    width: 30px;
+    height: 30px;
+    border: 0.5px solid #000000; /* Borde más delgado */
+    outline: none; /* Elimina el borde de enfoque predeterminado */
+    background-color: white;
+
+}
+
+.notification-option input[type="checkbox"]:checked  {
+
+    border: 1px solid #000; /* Bordes más delgados */
+
+}
+
+.notification-options input[type="checkbox"] {
+
+    width: 30px;
+    height: 30px;
+    border: 0.5px solid #000000; /* Borde más delgado */
+    outline: none; /* Elimina el borde de enfoque predeterminado */
+    background-color: white;
+
+}
+
+.notification-options input[type="checkbox"]:checked  {
+
+    border: 1px solid #000; /* Bordes más delgados */
+
+}
+
+.right-section .form-username {
+    margin-top: 50px;
+    margin-bottom: 42px;
+}
+
+.right-section .form-group {
+
+    margin-bottom: 42px;
+}
+
+.right-section label {
+    display: inline-block;
+    font-size: 18px;
+    color: #1475b6;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.right-section input[type="text"],
+.right-section input[type="password"] {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-bottom: 1px solid #000000;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+    outline: none; /* Sin contorno */
+
+}
+
+.right-section .show-password {
+    
+    position: relative;
+    left: 74.5%;
+    color:  #1475b6;
+    font-weight: bold;
+    display: flex;
+    align-items: center; /* Alinea verticalmente el checkbox con el texto */
+    font-size: 12px;
+    margin-bottom: 10px;
+    margin-top: 15px; /* Ajusta para que quede más cerca del campo de contraseña */
+}
+
+.right-section .show-password input[type="checkbox"] {
+
+    transform: scale(1.5); 
+    margin-right: 10px; 
+    vertical-align: middle;
+    border-bottom: 1px solid #000000; 
+
+}
+
+.save-btn {
+    
+    padding: 22px;
+    width: 100%;
+    margin-top: 5px;
+    background-color:  #1475b6;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-size: 2em;
+    transition: background-color 0.3s ease;
+}
+
+.save-btn:hover {
+    background-color: #125a8e;
+}
