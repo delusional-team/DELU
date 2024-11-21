@@ -1,0 +1,47 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+   
+    background-image: url('../img/fisi.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    backface-visibility: visible;
+    min-height: 120vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow: hidden;
+}
+
+/* Container principal */
+.container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+/* Fondo derecho e izquierdo */
+.background-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 57%;
+    height: 120vh;
+    background-color: rgba(16, 74, 141, 0.85);
+}
+
+.background-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 43%;
+    height: 120vh;
+    background-color: rgba(221, 155, 11, 0.705);
+}
+

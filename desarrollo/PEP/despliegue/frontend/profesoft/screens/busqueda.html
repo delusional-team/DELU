@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profesoft - Búsqueda de Profesores</title>
+    <link rel="stylesheet" href="css/busqueda.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="logo">
+            <img src="img/logo2.png" alt="Profesoft Logo">
+        </div>
+
+        <nav class="nav-links">
+            <a href="/screens/ajustes.html">Ajustes</a>
+            <a href='/screens/index.html'>Cerrar sesión</a>
+        </nav>
+
+    </header>
+
+    <!-- Contenedor Principal -->
+    <div class="container">
+
+        <!-- Barra de Búsqueda -->
+        <section class="search-bar">
+
+            <input type="text" id="search" placeholder="Buscar...">
+
+            <div class="filter-container">
+
+                <button class="filter-btn">
+                    Filtros <i class="fas fa-chevron-down filter-arrow"></i>
+                </button>
+
+                <div class="filter-options">
+                    <label><input type="radio" name="filter" value="best-rated"> Mejores calificados</label>
+                    <label><input type="radio" name="filter" value="worst-rated"> Peores calificados</label>
+                    <label><input type="radio" name="filter" value="most-courses"> Más cursos disponibles</label>
+                </div>
+
+            </div>
+
+            <button class="search-btn">Buscar</button>
+
+        </section>
+
+        <!-- Sección de Resultados -->
+        <section class="results-section">
+
+            <h2 class="results-title">Coincidencias encontradas:</h2>
+
+            <div class="results">
+                <div id="results-list">
+                    <!-- Aquí se cargarán los resultados dinámicamente -->
+                </div>
+            </div>
+            
+        </section>
+
+    </div>
+
+    <script src="js/busqueda.js"></script>
+</body>

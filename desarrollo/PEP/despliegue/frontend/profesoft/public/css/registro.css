@@ -1,0 +1,167 @@
+
+
+.logo {
+    position: relative;
+    top: 15.5%;
+    left: 20px;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    width: 260px;
+    height: 90px;
+    
+}
+
+.form-container {
+    background: #ffffff;
+    position: relative;
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+    align-items: center;
+    padding: 40px 80px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    max-width: 50%;
+    margin: auto;
+}
+
+.form-title {
+    font-size: 3em;
+    color: #1475b6;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #1475b6;
+    padding-bottom: 10px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-group {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.form-group:last-child {
+    margin-right: 0;
+}
+
+label {
+
+    display: inline-block;
+    font-size: 1.2em;
+    color: #1475b6;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    border: none;
+    outline: none; 
+    border-bottom: 1px solid #333; 
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+
+.email-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.show-password {
+    position: relative;
+    color: rgba(9, 50, 97, 0.85);
+    font-weight: bold;
+    display: flex;
+    align-items: center; 
+    font-size: 12px;
+    margin-bottom: 10px;
+    margin-top: -10px; 
+}
+
+.show-password input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 110px; 
+}
+
+.form-group {
+    flex: 1;
+}
+
+.btn-register {
+
+    margin-top: 20px; 
+    padding: 20px;
+    width: 100%;
+    background-color:  #1475b6;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 2em;
+    transition: background-color 0.3s ease;
+}
+
+.btn-register:hover {
+    background-color:  #073b5e;
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        max-width: 90%; /* Ensanchar el formulario en pantallas pequeñas */
+        padding: 20px;
+    }
+
+    .form-title {
+        font-size: 2em; /* Reducir el tamaño del título */
+    }
+
+    .form-row {
+        flex-direction: column; /* Cambiar a columna */
+        gap: 10px; /* Reducir espacio entre filas */
+    }
+
+    .form-group {
+        margin-right: 0;
+    }
+
+    .logo img {
+        width: 200px; /* Reducir el tamaño del logo */
+        height: auto;
+    }
+
+    .btn-register {
+        font-size: 1.2em; /* Reducir el tamaño del botón */
+    }
+}
+
+@media (max-width: 480px) {
+    .form-title {
+        font-size: 1.8em; /* Ajustar título para pantallas muy pequeñas */
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        font-size: 1em; /* Reducir tamaño del texto */
+        padding: 8px; /* Reducir padding */
+    }
+
+    .btn-register {
+        font-size: 1em; /* Botón más pequeño */
+        padding: 10px;
+    }
+}

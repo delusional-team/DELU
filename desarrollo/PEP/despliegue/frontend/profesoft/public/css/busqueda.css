@@ -1,0 +1,260 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color: #333;
+    padding: 0;
+    margin: 0;
+}
+
+.header {
+    background-color: #1475b6;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 140px;
+}
+
+.logo img {
+    width: 260px;
+    height: 90px;
+}
+
+.nav-links a {
+
+    color: white;
+    margin-left: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.nav-links a:first-child {
+    margin-right: 50px; /* Aumentar la distancia entre el primer y el segundo enlace */
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* Contenedor Principal */
+.container {
+    padding: 10px;
+    max-width: 85%; /* Ajusta según el ancho deseado */
+    margin: 0 auto; /* Centrar el contenedor */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* Espacio entre secciones */
+
+}
+
+/* Estilo para la barra de búsqueda */
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100px;
+    max-width: 100%;
+    margin-top: 60px;
+    gap: 50px; /* Espacio entre los elementos */
+
+}
+
+#search {
+    width: 30%; /* Ajustar ancho */
+    height: 55px;
+    padding: 0px 20px;
+    border: 2px solid #1475b6; /* Color del borde */
+    border-radius: 10px; /* Bordes redondeados */
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+#search:focus {
+    border-color: #125a8e;
+}
+
+/* Botón de Filtros */
+.filter-container {
+    position: relative;
+    display: inline-block;
+}
+
+.filter-btn {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 60px;
+    padding: 0px 15px;
+    background-color: #fff;
+    color: #000;
+    border: 2px solid #1475b6; /* Color del borde */
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.5em;
+    outline: none;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color:  #1475b6;
+    color: #fff;
+}
+
+.filter-btn:hover .filter-arrow {
+    color: #fff; /* Cambiar la flecha a blanco cuando esté en hover */
+}
+
+.filter-arrow {
+    margin-left: 40px; /* Empuja la flecha hacia la derecha */
+    font-size: 20px;
+    transition: transform 0.3s ease;
+    color: #1475b6;
+}
+
+.filter-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%); /* Centrar horizontalmente */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 260px; /* Ajustar el ancho si es necesario */
+    padding: 10px;
+    z-index: 100;
+    text-align: center; /* Centrar el contenido */
+}
+
+.filter-options label {
+    display: block;
+    padding: 5px;
+    font-size: 1.2em;
+    text-align: left; /* Mantener el texto alineado a la izquierda */
+    width: 100%;
+    cursor: pointer;
+}
+
+.filter-options label:hover {
+    background-color: #1475b6;
+    cursor: pointer;
+    color: #fff;
+}
+
+/* Mostrar opciones cuando se activa el menú */
+.filter-container.active .filter-options {
+    display: block;
+}
+
+.filter-container.active .filter-arrow {
+    transform: rotate(180deg); /* Girar la flecha hacia arriba */
+}
+
+/* Ajuste para el botón de buscar */
+.search-btn {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15%;
+    height: 60px;  /* Ajustar padding para mejor proporción */
+    background-color: #1475b6;
+    color: white;
+    border: none;
+    border-radius: 10px; /* Bordes redondeados */
+    cursor: pointer;
+    font-size: 1.5em;
+    font-weight: bold;
+
+}
+
+.search-btn:hover {
+    background-color: #125a8e;
+}
+
+/* Sección de resultados completa */
+.results-section {
+
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+
+}
+
+/* Título de resultados */
+.results-title {
+
+    font-size: 1.7em;
+    color: #1475b6; /* Color del texto */
+    margin-bottom: 10px; /* Espacio entre el título y el cuadro de resultados */
+    font-weight: bold;
+    border-bottom: 2.5px solid #ff9a00; /* Línea inferior opcional para destacar */
+    padding-bottom: 5px;
+
+}
+
+/* Cuadro de Resultados */
+.results {
+    background-color: white;
+    padding: 10px 0; /* Reducir el padding superior e inferior */
+    border-radius: 10px;
+    width: 100%; /* Asegura que ocupe todo el ancho del contenedor */
+    overflow-y: auto;
+    max-height: 480px; /* Define el tamaño máximo de la lista de resultados visibles */
+    overflow-y: auto; /* Permite el desplazamiento vertical si se excede el tamaño */
+}
+
+/* Aplicar estilo a los títulos de los resultados dinámicos */
+.result-item h3 {
+    color: #1475b6; /* Color del texto */
+    font-size: 18px; /* Ajustar el tamaño para que coincida con el diseño */
+    font-weight: bold;
+    margin: 0; /* Quitar márgenes adicionales */
+    padding-bottom: 10px; /* Espacio para la línea */
+    position: relative; /* Necesario para el pseudo-elemento */
+}
+
+.result-item h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%; /* Línea ocupa todo el ancho */
+    height: 2px; /* Grosor de la línea */
+    background-color: #1475b6; /* Color de la línea */
+}
+
+
+
+/* Alineación de los detalles */
+.details-inline {
+    display: center;
+    gap: 10px; /* Espacio entre las evaluaciones y los cursos */
+    flex-wrap: wrap; /* Permitir que se ajuste en varias líneas si es necesario */
+    margin-top: 5px; /* Separación del título */
+    margin-left: 20%;
+}
+
+/* Detalles en línea */
+.details-inline p {
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.professor-link {
+    color: #1475b6; /* Ajustar el color si es necesario */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.professor-link:hover {
+    text-decoration: underline; /* Añadir un subrayado al pasar el ratón si lo deseas */
+}
