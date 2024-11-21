@@ -1,3 +1,5 @@
+const url = import.meta.env.VITE_HOST_URL;
+
 document.addEventListener('DOMContentLoaded', function () {
     const showPasswordCheckbox = document.getElementById('show-password');
     const passwordInput = document.getElementById('password');
@@ -5,39 +7,34 @@ document.addEventListener('DOMContentLoaded', function () {
     const registrationForm = document.getElementById('registration-form');
     const messageDiv = document.getElementById('message');
 
-    // Mostrar/ocultar contraseñas
     showPasswordCheckbox.addEventListener('change', function () {
         const type = this.checked ? 'text' : 'password';
         passwordInput.type = type;
         confirmPasswordInput.type = type;
     });
 
-    // Manejo del envío del formulario
     registrationForm.addEventListener('submit', async function (event) {
-        event.preventDefault(); // Evita el envío predeterminado
+        event.preventDefault(); 
 
-        const studentCode = document.getElementById('student_code').value;
+        const username = document.getElementById('username').value;
         const email = document.getElementById('email').value;
         const password = passwordInput.value;
         const confirmPassword = confirmPasswordInput.value;
 
-        // Verificar que las contraseñas coincidan
         if (password !== confirmPassword) {
             messageDiv.textContent = 'Las contraseñas no coinciden.';
             messageDiv.style.color = 'red';
             return;
         }
 
-        // Crear el cuerpo de la solicitud
         const requestBody = {
-            student_code: studentCode,
+            name: username,
             email: email,
             password: password,
         };
 
         try {
-            // Enviar la solicitud POST
-            const response = await fetch('/register', {
+            const response = await fetch(`${url}/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
