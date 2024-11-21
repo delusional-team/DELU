@@ -42,6 +42,7 @@ async fn rocket() -> _ {
         ..Config::default()
     };
     let database_url = std::env::var("DATABASE_URL").expect("DATABASE_URL must be set");
+    println!("{}", database_url);
     let pool = db::pool::create_pool(&database_url).await.unwrap();
 
     rocket::build()
