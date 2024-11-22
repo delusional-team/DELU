@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 password: password
             });
 
-            xhr.open("POST", `${url}/login`, true);
+            xhr.open("POST", `${url}/profesoft/login`, true);
             xhr.setRequestHeader("Content-Type", "application/json");
 
             xhr.onreadystatechange = function () {
@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         alert("Inicio de sesión exitoso");
                         console.log("Token recibido:", response.token);
                         localStorage.setItem("jwt", response.token);
+                        window.location.href = "/screens/busqueda.html";
                     } else if (xhr.status === 401) {
                         alert("Credenciales inválidas. Por favor, verifica tu correo y contraseña.");
                     } else {

@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         try {
-            const response = await fetch(`${url}/register`, {
+            const response = await fetch(`${url}/profesoft/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -43,9 +43,9 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             if (response.status === 201) {
-                messageDiv.textContent = 'Cuenta creada exitosamente. Revisa tu correo de confirmación.';
+                messageDiv.textContent = 'Cuenta creada exitosamente.';
                 messageDiv.style.color = 'green';
-                registrationForm.reset(); 
+                window.location.href = "/screens/login.html"; 
             } else if (response.status === 400) {
                 const errorData = await response.json();
                 messageDiv.textContent = `Error: ${errorData.message || 'Credenciales inválidas.'}`;
