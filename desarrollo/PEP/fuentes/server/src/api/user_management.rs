@@ -4,7 +4,6 @@ use rocket::http::Status;
 use sqlx::query;
 use sqlx::Postgres;
 use sqlx::Pool;
-use uuid::Uuid;
 
 use hmac::{Hmac, Mac};
 use jwt::SignWithKey;
@@ -22,8 +21,6 @@ use argon2::{
     },
     Argon2,
 };
-
-use super::mail;
 
 #[derive(Debug, Deserialize, Serialize)]
 struct NewUserPayload {
@@ -48,7 +45,6 @@ pub struct AppUser {
     pub active: bool,
     pub is_admin: bool,
     pub is_banned: bool,
-    pub verification_token: Option<String>,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
@@ -64,7 +60,7 @@ struct LoginResponse {
 }
 
 pub fn routes() -> Vec<Route> {
-    routes![create_user, options, verify_user, login_user]
+    routes![create_user, options, login_user]
 }
 
 fn generate_token(subject: &str) -> Result<String, Box<dyn std::error::Error>> {
@@ -91,12 +87,11 @@ fn hash_pass(password: &str, salt: &SaltString) -> String {
 async fn create_user(pool: &State<Pool<Postgres>>, new_user: Json<NewUserPayload>) -> Result<Status, Status>{
     let salt = SaltString::generate(&mut OsRng);
     let hashed_pass = hash_pass(&new_user.password, &salt);
-    let verification_token = Uuid::new_v4().to_string();
 
     let result = query!(
         r#"
-        INSERT INTO users (name, email, hashed_pass, salt, active, is_admin, is_banned, verification_token)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        INSERT INTO users (name, email, hashed_pass, salt, active, is_admin, is_banned)
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
         "#,
         new_user.name,
         new_user.email,
@@ -105,62 +100,18 @@ async fn create_user(pool: &State<Pool<Postgres>>, new_user: Json<NewUserPayload
         new_user.active,
         new_user.is_admin,
         new_user.is_banned,
-        verification_token
     )
     .execute(pool.inner())
     .await;
 
     match result {
         Ok(_) => {
-            let host = std::env::var("HOST").unwrap();
-            let verification_url = format!("{}/verify?token={}", host, verification_token);
-            mail::send_email(&new_user.email, &verification_url);
             Ok(Status::Created)
         },
         Err(e) => {
             println!("Failed to insert user: {:?}", e);
             Err(Status::Conflict)
         }
-    }
-}
-
-#[get("/verify?<token>")]
-async fn verify_user(pool: &State<Pool<Postgres>>, token: String) -> Result<&str, Status>{
-    // Query the database to find a user with the provided token
-    let result = query!(
-        r#"
-        SELECT id FROM users WHERE verification_token = $1
-        "#,
-        token
-    )
-    .fetch_optional(pool.inner())
-    .await;
-
-
-    match result {
-        Ok(Some(record)) => {
-            println!("got user {result}", result=record.id);
-            // Token is valid, update the user to be active
-            let update_result = query!(
-                r#"
-                UPDATE users SET active = true, verification_token = NULL
-                WHERE id = $1
-                "#,
-                record.id
-            )
-            .execute(pool.inner())
-            .await;
-
-            match update_result {
-                Ok(_) => Ok("Verificación exitosa 🎉🎉🎉 Ya puedes volver a ProfeSoft"),
-                Err(_) => Err(Status::InternalServerError),
-            }
-        }
-        Ok(None) => {
-            // Token was not found
-            Err(Status::NotFound)
-        }
-        Err(_) => Err(Status::NotFound),
     }
 }
 
@@ -204,7 +155,7 @@ fn options() -> Status {
 }
 
 fn default_active() -> bool {
-    false
+    true
 }
 
 fn default_is_admin() -> bool {
