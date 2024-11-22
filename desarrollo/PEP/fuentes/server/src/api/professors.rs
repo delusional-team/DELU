@@ -22,7 +22,14 @@ struct Professor {
 #[get("/professors")]
 async fn get_professors(pool: &State<Pool<Postgres>>) -> Result<Json<Vec<Professor>>, Status> {
     let result = query!(
-        r#"SELECT * FROM teachers"#
+        r#"
+        SELECT teachers.id, teachers.name, teachers.grade, teachers.department, 
+               array_agg(courses.name) AS courses
+        FROM teachers
+        LEFT JOIN teachers_courses ON teachers.id = teachers_courses.profesor_id
+        LEFT JOIN courses ON teachers_courses.cursos_id = courses.id
+        GROUP BY teachers.id;
+        "#
     )
     .fetch_all(pool.inner())
     .await;
@@ -36,7 +43,7 @@ async fn get_professors(pool: &State<Pool<Postgres>>) -> Result<Json<Vec<Profess
                     name: record.name,
                     grade: record.grade,
                     department: record.department,
-                    courses: None
+                    courses: Some(record.courses.unwrap_or_default()),
                 })
                 .collect();
             Ok(Json(professors))
