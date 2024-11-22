@@ -47,6 +47,7 @@ async fn rocket() -> _ {
 
     rocket::build()
         .configure(config)
+        .attach(api::fairings::Cors)
         .manage(pool)
         .mount(PROFESOFT, routes![index])
         .mount(PROFESOFT, api::user_management::routes())

@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const loginForm = document.querySelector(".login-form");
 
     loginForm.addEventListener("submit", function (event) {
-        event.preventDefault(); // Evita el comportamiento predeterminado del formulario
+        event.preventDefault();
 
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             xhr.open("POST", `${url}/profesoft/login`, true);
             xhr.setRequestHeader("Content-Type", "application/json");
-
+            console.log("Hola")
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
