@@ -1,0 +1,44 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        SELECT teachers.id, teachers.name, teachers.grade, teachers.department, \n               array_agg(courses.name) AS courses\n        FROM teachers\n        LEFT JOIN teachers_courses ON teachers.id = teachers_courses.profesor_id\n        LEFT JOIN courses ON teachers_courses.cursos_id = courses.id\n        GROUP BY teachers.id;\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 1,
+        "name": "name",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "grade",
+        "type_info": "Float8"
+      },
+      {
+        "ordinal": 3,
+        "name": "department",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 4,
+        "name": "courses",
+        "type_info": "VarcharArray"
+      }
+    ],
+    "parameters": {
+      "Left": []
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      true,
+      null
+    ]
+  },
+  "hash": "b5cad6c8ae94d33b6d58fca7aa94d201ac6d0119dbd7a2cfd7d9358b7e48100c"
+}
