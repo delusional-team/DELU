@@ -1,6 +1,6 @@
 {
   "db_name": "PostgreSQL",
-  "query": "\n        INSERT INTO professor_comments (user_id, profesor_id, text)\n        VALUES ($1, $2, $3)\n        RETURNING id;\n        ",
+  "query": "\n        INSERT INTO professor_comments (user_id, profesor_id, grade, text)\n        VALUES ($1, $2, $3, $4)\n        RETURNING id;\n        ",
   "describe": {
     "columns": [
       {
@@ -13,6 +13,7 @@
       "Left": [
         "Int4",
         "Int4",
+        "Int4",
         "Varchar"
       ]
     },
@@ -20,5 +21,5 @@
       false
     ]
   },
-  "hash": "a31f9d0b6f204da11e73ed8e93e2bc78bafff4dbc92c77c3fc1170a83f69655a"
+  "hash": "e4a48944bbced4b3f15eebc28724ebfccf5eee67c8ca24f93abf919e19a3be94"
 }
