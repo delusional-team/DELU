@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const url = import.meta.env.VITE_HOST_URL; 
-    const apiUrl = `${url}/foro/all`;
+    const apiUrl = `${url}/profesoft/forum/posts`;
     const forumsList = document.getElementById("forums-list");
     const createForumBtn = document.getElementById("create-forum-btn");
     const modal = document.getElementById("create-forum-modal");
@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return response.json();
         })
         .then((forums) => {
+            console.log('Estos son todos los foros')
             displayForums(forums);
         })
         .catch((error) => console.error("Error:", error));
@@ -26,11 +27,11 @@ document.addEventListener("DOMContentLoaded", function () {
             forumElement.classList.add("forum");
             forumElement.innerHTML = `
                 <h2 class="forum-title">${forum.title}</h2>
-                <p class="forum-author">Publicado por: ${forum.author}</p>
+                <p class="forum-author">Publicado por: ${forum.user.name}</p>
             `;
 
             forumElement.addEventListener("click", () => {
-                window.location.href = `forum.html?id=${forum.id}`;
+                window.location.href = `foro.html?id=${forum.id}`;
             });
 
             forumsList.appendChild(forumElement);
@@ -53,20 +54,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const newForum = {
             title: document.getElementById("forum-title").value,
-            question: document.getElementById("forum-question").value,
+            content: document.getElementById("forum-question").value,
         };
 
-        fetch(`${url}/foro/create`, {
+        const token = localStorage.getItem('jwt');
+
+        fetch(`${url}/profesoft/forum/posts`, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Content-Type": "application/json",
+                "authorization": `Bearer ${token}`,
+             },
             body: JSON.stringify(newForum),
         })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(`Error al crear foro: ${response.statusText}`);
-                }
-                return response.json();
-            })
             .then(() => {
                 modal.classList.add("hidden");
                 window.location.reload();

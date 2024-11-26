@@ -129,48 +129,26 @@ body {
 
 /* Comments */
 .comment {
-    padding: 10px 0;
+    padding: 15px 10px;
     border-bottom: 1px solid #ddd;
+    background-color: #f9f9f9;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .commenter-name {
     font-weight: bold;
-    font-size: 1em;
-    color: #1475b6;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.rating-stars {
-    color: #ff9a00;
     font-size: 1.1em;
+    color: #1475b6;
+    margin-bottom: 5px;
 }
 
 .comment-text {
     margin-top: 5px;
     line-height: 1.5;
-    padding-left: 20px;
-}
-
-/* Sub-Comments */
-.sub-comment {
-    padding: 10px 20px;
-    background-color: #f9f9f9;
-    margin-top: 5px;
-    border-left: 3px solid #1475b6;
-}
-
-.sub-commenter-name {
-    font-weight: bold;
+    color: #555;
     font-size: 1em;
-    color: #1475b6;
-}
-
-.sub-comment-text {
-    margin-top: 5px;
-    line-height: 1.5;
-    padding-left: 20px;
 }
 
 /* Add Comment Section */
@@ -221,82 +199,21 @@ body {
 
 /* Media Queries */
 @media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 15px 20px;
-    }
-
-    .nav-links {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .main-content {
-        max-width: 100%;
-        margin: 20px auto 0;
-        padding: 15px;
-    }
-
-    .professor-header {
-        gap: 5px;
-    }
-
-    .professor-name {
-        font-size: 1.4em;
-    }
-
-    .current-rating {
-        font-size: 0.9em;
-    }
-
-    .courses-section h3,
-    .courses-section p {
-        font-size: 0.95em;
-    }
-
     .comments-section {
         max-height: 250px;
     }
 
-    .commenter-name {
-        font-size: 0.85em;
+    .comment-text {
+        font-size: 0.9em;
     }
 
-    .comment-text,
-    .sub-comment-text {
-        font-size: 0.85em;
+    .add-comment-section {
+        margin-top: 10px;
+        padding: 15px;
     }
 }
 
 @media (max-width: 480px) {
-    .logo img {
-        width: 150px;
-        height: 60px;
-    }
-
-    .nav-links a {
-        font-size: 0.9em;
-    }
-
-    .main-content {
-        padding: 10px;
-    }
-
-    .professor-name {
-        font-size: 1.2em;
-    }
-
-    .current-rating {
-        font-size: 0.8em;
-    }
-
-    .courses-section h3,
-    .courses-section p {
-        font-size: 0.8em;
-    }
-
     .comments-section {
         max-height: 200px;
         margin-bottom: 10px;
@@ -305,10 +222,5 @@ body {
     .add-comment-section {
         margin-top: 10px;
         padding: 10px;
-    }
-
-    .comment-text,
-    .sub-comment-text {
-        font-size: 0.75em;
     }
 }
