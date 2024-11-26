@@ -95,14 +95,14 @@ struct Comment {
 #[post("/professor/<id>/comments", data = "<comment>")]
 async fn post_professor_comment(
     pool: &State<Pool<Postgres>>, id: i32, comment: Json<Comment>, user: AppUser,
-) -> Result<Json<Professor>, Status> {
+) -> Result<Json<Value>, Status> {
     println!("Adding comment for professor {id} {:#?}", comment);
 
     let result = query!(
         r#"
         INSERT INTO professor_comments (user_id, profesor_id, grade, text)
         VALUES ($1, $2, $3, $4)
-        RETURNING id;
+        RETURNING *;
         "#,
         user.id,
         id,
@@ -113,7 +113,12 @@ async fn post_professor_comment(
     .await;
 
     match result {
-        Ok(_) => get_professors_by_id(pool, id).await,
+        Ok(comment) => Ok(Json(json!({
+            "id": comment.id,
+            "text": comment.text,
+            "grade": comment.grade,
+        })),
+        ),
         Err(_) => Err(Status::InternalServerError),
     }
 }
@@ -136,7 +141,7 @@ async fn get_professor_comments(pool: &State<Pool<Postgres>>, id: i32) -> Result
             users.is_admin as user_is_admin,
             users.is_banned as user_is_banned
         FROM professor_comments
-        NATURAL JOIN users
+        JOIN users ON professor_comments.user_id = users.id
         WHERE profesor_id = $1;
         "#, id
     )
