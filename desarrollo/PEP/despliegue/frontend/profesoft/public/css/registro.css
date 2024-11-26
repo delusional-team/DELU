@@ -1,5 +1,4 @@
 
-
 .logo {
     position: relative;
     top: 15.5%;
@@ -122,17 +121,17 @@ input[type="password"] {
 
 @media (max-width: 768px) {
     .form-container {
-        max-width: 90%; /* Ensanchar el formulario en pantallas pequeñas */
+        max-width: 90%;
         padding: 20px;
     }
 
     .form-title {
-        font-size: 2em; /* Reducir el tamaño del título */
+        font-size: 2em;
     }
 
     .form-row {
-        flex-direction: column; /* Cambiar a columna */
-        gap: 10px; /* Reducir espacio entre filas */
+        flex-direction: column; 
+        gap: 10px; 
     }
 
     .form-group {
@@ -140,28 +139,28 @@ input[type="password"] {
     }
 
     .logo img {
-        width: 200px; /* Reducir el tamaño del logo */
+        width: 200px; 
         height: auto;
     }
 
     .btn-register {
-        font-size: 1.2em; /* Reducir el tamaño del botón */
+        font-size: 1.2em;
     }
 }
 
 @media (max-width: 480px) {
     .form-title {
-        font-size: 1.8em; /* Ajustar título para pantallas muy pequeñas */
+        font-size: 1.8em; 
     }
 
     input[type="text"],
     input[type="password"] {
-        font-size: 1em; /* Reducir tamaño del texto */
-        padding: 8px; /* Reducir padding */
+        font-size: 1em; 
+        padding: 8px; 
     }
 
     .btn-register {
-        font-size: 1em; /* Botón más pequeño */
+        font-size: 1em; 
         padding: 10px;
     }
 }

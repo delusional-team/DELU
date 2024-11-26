@@ -1,9 +1,11 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     background-color: white;
     color: #333;
-    padding: 0;
     margin: 0;
+    padding: 0;
+    line-height: 1.6;
 }
 
 .header {
@@ -20,17 +22,18 @@ body {
     height: 90px;
 }
 
-.nav-links a {
+.nav-links {
+    display: flex;
+    align-items: center;
+}
 
+.nav-links a {
     color: white;
-    margin-left: 30px;
+    margin: 0 15px;
     text-decoration: none;
     font-weight: bold;
     font-size: 1.2em;
-}
-
-.nav-links a:first-child {
-    margin-right: 50px; /* Aumentar la distancia entre el primer y el segundo enlace */
+    transition: color 0.3s, text-decoration 0.3s;
 }
 
 .nav-links a:hover {
@@ -38,29 +41,24 @@ body {
 }
 
 .main-content {
-    padding: 10px;
     max-width: 85%;
-    margin: 0 auto;
-    margin-top: 70px;
+    margin: 70px auto 0;
+    padding: 10px;
 }
 
-.professor-details{
-
-    margin-bottom: 10px; 
+/* Professor Details */
+.professor-details {
+    margin-bottom: 10px;
     font-weight: bold;
-    border-bottom: 2.5px solid #ff9a00; /* Línea inferior opcional para destacar */
+    border-bottom: 2.5px solid #ff9a00;
     padding-bottom: 40px;
-
 }
 
 .professor-header {
-    
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: space-between; /* Asegura que el nombre y la calificación estén en extremos opuestos */
     padding-bottom: 10px;
-    position: relative;
-
 }
 
 .professor-name {
@@ -68,128 +66,249 @@ body {
     font-weight: bold;
     color: #1475b6;
     margin: 0;
-    padding-right: 20px; /* Espacio para la calificación */
     position: relative;
 }
 
-.current-rating{
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #f4b21a;
-    margin: 0;
-}
-
-.current-rating .rating-value {
-    color: #1475b6;
-}
-
-/* Para crear la línea dorada que se extiende a la derecha */
 .professor-name::after {
     content: "";
     display: block;
     height: 2px;
     background-color: #f4b21a;
     position: absolute;
-    bottom: -2px; /* Ajusta la posición vertical */
-    left: 100%; /* Empieza justo al final del nombre */
-    width: calc(1195px); /* Se extiende hacia la derecha */
+    bottom: -2px;
+    right: 0;
+    width: calc(100% - 20px);
 }
 
-.courses-section h3 {
-    color: #000000;
+.current-rating {
+    font-size: 1.2em;
     font-weight: bold;
-    margin-top: 15px;
-    font-size: 1em;
-    width: 15%;
-    margin-left: 11%; /* Ajusta la posición horizontal */
+    color: #f4b21a;
 }
 
-.courses-section p{
-
-    color: #000000;
-    margin-top: 15px;
-    font-size: 1em;
-    margin-left: 21%; /* Ajusta la posición horizontal */
+.current-rating .rating-value {
+    color: #1475b6;
 }
 
-/* Comentarios */
+/* Courses Section */
+.courses-section h3,
+.courses-section p {
+    margin-left: 11%;
+    margin-top: 15px;
+    font-size: 1em;
+    color: #000;
+}
+
+/* Comments Section */
 .comments-section {
-
-    max-height: 400px; /* Limita la altura de la sección de comentarios */
-    overflow-y: auto;  /* Permite el desplazamiento vertical */
-    padding-right: 10px; /* Añade espacio para evitar el corte de contenido con la barra de desplazamiento */
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
     border-radius: 5px;
-
+    border: 1px solid #ddd;
+    margin-top: 20px;
 }
 
-/* Personalización de la barra de desplazamiento */
+/* Scrollbar Customization */
 .comments-section::-webkit-scrollbar {
-    width: 8px; /* Ancho de la barra de desplazamiento */
+    width: 8px;
 }
 
 .comments-section::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Color de fondo de la barra de desplazamiento */
+    background: #f1f1f1;
 }
 
 .comments-section::-webkit-scrollbar-thumb {
-    background: #1475b6; /* Color de la parte de desplazamiento */
+    background: #1475b6;
     border-radius: 10px;
 }
 
 .comments-section::-webkit-scrollbar-thumb:hover {
-    background: #125a8e; /* Color cuando se pasa el mouse sobre el desplazamiento */
+    background: #125a8e;
 }
 
-
+/* Comments */
 .comment {
-
-    padding: 5px 0;
-    
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
 }
 
 .commenter-name {
-
     font-weight: bold;
     font-size: 1em;
     color: #1475b6;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2.5px solid #ff9a00; /* Línea inferior opcional para destacar */
-
 }
 
 .rating-stars {
-
     color: #ff9a00;
     font-size: 1.1em;
 }
 
 .comment-text {
-
     margin-top: 5px;
     line-height: 1.5;
-    margin-left: 10%;
-
+    padding-left: 20px;
 }
 
+/* Sub-Comments */
 .sub-comment {
-
     padding: 10px 20px;
-    background-color: #ffffff;
+    background-color: #f9f9f9;
     margin-top: 5px;
- 
+    border-left: 3px solid #1475b6;
 }
 
 .sub-commenter-name {
     font-weight: bold;
     font-size: 1em;
     color: #1475b6;
-    margin-left: 8.5%;
 }
 
 .sub-comment-text {
     margin-top: 5px;
     line-height: 1.5;
-    margin-left: 16%;
+    padding-left: 20px;
+}
+
+/* Add Comment Section */
+.add-comment-section {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.add-comment-section h2 {
+    font-size: 1.5em;
+    color: #1475b6;
+    margin-bottom: 15px;
+}
+
+.add-comment-section label {
+    font-size: 1em;
+    font-weight: bold;
+    margin: 10px 0 5px;
+}
+
+.add-comment-section input,
+.add-comment-section select,
+.add-comment-section textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.add-comment-section button {
+    background-color: #1475b6;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-comment-section button:hover {
+    background-color: #125a8e;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 15px 20px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .main-content {
+        max-width: 100%;
+        margin: 20px auto 0;
+        padding: 15px;
+    }
+
+    .professor-header {
+        gap: 5px;
+    }
+
+    .professor-name {
+        font-size: 1.4em;
+    }
+
+    .current-rating {
+        font-size: 0.9em;
+    }
+
+    .courses-section h3,
+    .courses-section p {
+        font-size: 0.95em;
+    }
+
+    .comments-section {
+        max-height: 250px;
+    }
+
+    .commenter-name {
+        font-size: 0.85em;
+    }
+
+    .comment-text,
+    .sub-comment-text {
+        font-size: 0.85em;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo img {
+        width: 150px;
+        height: 60px;
+    }
+
+    .nav-links a {
+        font-size: 0.9em;
+    }
+
+    .main-content {
+        padding: 10px;
+    }
+
+    .professor-name {
+        font-size: 1.2em;
+    }
+
+    .current-rating {
+        font-size: 0.8em;
+    }
+
+    .courses-section h3,
+    .courses-section p {
+        font-size: 0.8em;
+    }
+
+    .comments-section {
+        max-height: 200px;
+        margin-bottom: 10px;
+    }
+
+    .add-comment-section {
+        margin-top: 10px;
+        padding: 10px;
+    }
+
+    .comment-text,
+    .sub-comment-text {
+        font-size: 0.75em;
+    }
 }
