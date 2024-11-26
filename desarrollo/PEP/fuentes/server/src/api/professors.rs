@@ -86,7 +86,7 @@ async fn get_professors_by_id(pool: &State<Pool<Postgres>>, id: i32) -> Result<J
     }
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 struct Comment {
     text: String,
 }
@@ -95,6 +95,8 @@ struct Comment {
 async fn post_professor_comment(
     pool: &State<Pool<Postgres>>, id: i32, comment: Json<Comment>, user: AppUser,
 ) -> Result<Json<Professor>, Status> {
+    println!("Adding comment for professor {id} {:#?}", comment);
+
     let result = query!(
         r#"
         INSERT INTO professor_comments (user_id, profesor_id, text)
