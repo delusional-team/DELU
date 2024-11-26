@@ -1,0 +1,242 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.header {
+    background-color: #1475b6;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 140px;
+}
+
+.logo img {
+    width: 260px;
+    height: 90px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+    transition: color 0.3s, text-decoration 0.3s;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.main-content {
+    max-width: 85%;
+    margin: 70px auto 0;
+    padding: 10px;
+}
+
+/* Question Section */
+.question-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.question-title {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #1475b6;
+    margin: 0;
+}
+
+.question-author {
+    font-size: 1em;
+    color: #888;
+}
+
+.question-body {
+    font-size: 1.2em;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* Answers Section */
+.answers-section {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 5px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Scrollbar Customization */
+.answers-section::-webkit-scrollbar {
+    width: 8px;
+}
+
+.answers-section::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.answers-section::-webkit-scrollbar-thumb {
+    background: #1475b6;
+    border-radius: 10px;
+}
+
+.answers-section::-webkit-scrollbar-thumb:hover {
+    background: #125a8e;
+}
+
+.answer {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.answer:last-child {
+    border-bottom: none;
+}
+
+.answer-author {
+    font-weight: bold;
+    font-size: 1em;
+    color: #1475b6;
+    margin-bottom: 5px;
+}
+
+.answer-text {
+    line-height: 1.5;
+    padding-left: 20px;
+    font-size: 1em;
+}
+
+/* Add Answer Section */
+.add-answer-section {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.add-answer-section h2 {
+    font-size: 1.5em;
+    color: #1475b6;
+    margin-bottom: 15px;
+}
+
+.add-answer-section label {
+    font-size: 1em;
+    font-weight: bold;
+    margin: 10px 0 5px;
+}
+
+.add-answer-section textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.add-answer-section button {
+    background-color: #1475b6;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-answer-section button:hover {
+    background-color: #125a8e;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 15px 20px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .main-content {
+        max-width: 100%;
+        margin: 20px auto 0;
+        padding: 15px;
+    }
+
+    .question-title {
+        font-size: 1.4em;
+    }
+
+    .question-author {
+        font-size: 0.9em;
+    }
+
+    .answer-author,
+    .answer-text {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo img {
+        width: 150px;
+        height: 50px;
+    }
+
+    .nav-links a {
+        font-size: 0.9em;
+    }
+
+    .main-content {
+        padding: 10px;
+    }
+
+    .question-title {
+        font-size: 1.2em;
+    }
+
+    .question-author,
+    .answer-author {
+        font-size: 0.8em;
+    }
+
+    .add-answer-section {
+        padding: 10px;
+    }
+
+    .answer-text {
+        font-size: 0.75em;
+    }
+}

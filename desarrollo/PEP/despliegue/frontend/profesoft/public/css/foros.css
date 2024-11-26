@@ -1,0 +1,166 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: #1475b6;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 140px;
+}
+
+.header .logo img {
+    width: 200px;
+    height: 60px;
+}
+
+.nav-links a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.main-content {
+    max-width: 85%;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 1.8em;
+    color: #1475b6;
+}
+
+#forums-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.forum {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.forum:hover {
+    background-color: #e9f5fc;
+}
+
+.forum-title {
+    font-size: 1.2em;
+    color: #1475b6;
+    margin: 0 0 5px;
+}
+
+.forum-author {
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* Botón de Crear Foro */
+#create-forum-btn {
+    margin-top: 30px;
+    padding: 10px 20px;
+    background-color: #1475b6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+#create-forum-btn:hover {
+    background-color: #125a8e;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 400px;
+    text-align: center;
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+    color: #1475b6;
+}
+
+.modal-content form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.modal-content form input,
+.modal-content form textarea {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.modal-content form button {
+    background-color: #1475b6;
+    color: white;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-content form button:hover {
+    background-color: #125a8e;
+}
+
+#close-modal-btn {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#close-modal-btn:hover {
+    background-color: #d32f2f;
+}
