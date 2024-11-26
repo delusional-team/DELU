@@ -1,0 +1,88 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        SELECT\n            professor_comments.id as comment_id,\n            professor_comments.text as comment_text,\n            professor_comments.user_id as comment_user_id,\n            professor_comments.profesor_id as comment_profesor_id,\n            users.id as users_id,\n            users.name as user_name,\n            users.email as user_email,\n            users.hashed_pass as user_hashed_pass,\n            users.salt as user_salt,\n            users.active as user_active,\n            users.is_admin as user_is_admin,\n            users.is_banned as user_is_banned\n        FROM professor_comments\n        NATURAL JOIN users\n        WHERE profesor_id = $1;\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "comment_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 1,
+        "name": "comment_text",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "comment_user_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 3,
+        "name": "comment_profesor_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 4,
+        "name": "users_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 5,
+        "name": "user_name",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 6,
+        "name": "user_email",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 7,
+        "name": "user_hashed_pass",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 8,
+        "name": "user_salt",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 9,
+        "name": "user_active",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 10,
+        "name": "user_is_admin",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 11,
+        "name": "user_is_banned",
+        "type_info": "Bool"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Int4"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "ccba4b49587b501d6753f7ba5606b4fd61df6d5932d86fd8cc41f5e28c08225c"
+}
