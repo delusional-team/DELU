@@ -89,6 +89,7 @@ async fn get_professors_by_id(pool: &State<Pool<Postgres>>, id: i32) -> Result<J
 #[derive(Deserialize, Debug)]
 struct Comment {
     text: String,
+    grade: i32,
 }
 
 #[post("/professor/<id>/comments", data = "<comment>")]
@@ -99,12 +100,13 @@ async fn post_professor_comment(
 
     let result = query!(
         r#"
-        INSERT INTO professor_comments (user_id, profesor_id, text)
-        VALUES ($1, $2, $3)
+        INSERT INTO professor_comments (user_id, profesor_id, grade, text)
+        VALUES ($1, $2, $3, $4)
         RETURNING id;
         "#,
         user.id,
         id,
+        comment.grade,
         comment.text
     )
     .fetch_one(pool.inner())
