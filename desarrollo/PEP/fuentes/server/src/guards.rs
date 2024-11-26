@@ -27,7 +27,15 @@ impl<'r> FromRequest<'r> for AppUser {
 
         let key: Hmac<Sha256> = Hmac::new_from_slice(secret.as_bytes()).unwrap();
 
-        let claims: BTreeMap<String, String> = user_token.verify_with_key(&key).unwrap();
+        println!("key: {secret}");
+
+        let claims: BTreeMap<String, String> = match user_token.verify_with_key(&key) {
+            Ok(claims) => claims,
+            Err(err) => {
+                println!("{:?}", err);
+                return rocket::request::Outcome::Forward(Status::Unauthorized);
+            }
+        };
         let user_email = claims.get("sub").unwrap();
 
         let app_state = match request.rocket().state::<Pool<Postgres>>() {
