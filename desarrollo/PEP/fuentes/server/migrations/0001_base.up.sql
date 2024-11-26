@@ -1,9 +1,14 @@
+CREATE TABLE IF NOT EXISTS "teachers" (
+  "id" SERIAL PRIMARY KEY NOT NULL,
+  "name" VARCHAR(255) NOT NULL,
+  "grade" DOUBLE PRECISION NOT NULL
+);
 CREATE TABLE IF NOT EXISTS "comments" (
   "id" SERIAL PRIMARY KEY NOT NULL,
   "text" VARCHAR(255) NOT NULL,
   "grade" DOUBLE PRECISION NOT NULL,
   "user_id" INTEGER NOT NULL,
-  "profesor_id" INTEGER NOT NULL,
+  "profesor_id" INTEGER NOT NULL, -- deleted in future migrations
   "forum_id" INTEGER NOT NULL
 );
 
@@ -31,11 +36,6 @@ CREATE TABLE IF NOT EXISTS "courses" (
   "study_plan_id" INTEGER NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS "teachers" (
-  "id" SERIAL PRIMARY KEY NOT NULL,
-  "name" VARCHAR(255) NOT NULL,
-  "grade" DOUBLE PRECISION NOT NULL
-);
 
 CREATE TABLE IF NOT EXISTS "forum" (
   "id" SERIAL PRIMARY KEY NOT NULL,
@@ -49,12 +49,6 @@ CREATE TABLE IF NOT EXISTS "study_plan" (
   "id" SERIAL PRIMARY KEY NOT NULL,
   "year" INTEGER NOT NULL
 );
-
-DO $$ BEGIN
-    IF NOT EXISTS (SELECT 1 FROM information_schema.table_constraints WHERE constraint_name = 'comments_profesor_id_foreign') THEN
-        ALTER TABLE "comments" ADD CONSTRAINT "comments_profesor_id_foreign" FOREIGN KEY ("profesor_id") REFERENCES "teachers" ("id");
-    END IF;
-END $$;
 
 DO $$ BEGIN
     IF NOT EXISTS (SELECT 1 FROM information_schema.table_constraints WHERE constraint_name = 'teachers_courses_profesor_id_foreign') THEN
