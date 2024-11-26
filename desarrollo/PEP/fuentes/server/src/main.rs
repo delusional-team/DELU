@@ -41,9 +41,12 @@ async fn rocket() -> _ {
             .limit("json", 32.mebibytes()),
         ..Config::default()
     };
+
     let database_url = std::env::var("DATABASE_URL").expect("DATABASE_URL must be set");
     println!("{}", database_url);
     let pool = db::pool::create_pool(&database_url).await.unwrap();
+
+    sqlx::migrate!("./migrations").run(&pool).await.unwrap();
 
     rocket::build()
         .configure(config)
