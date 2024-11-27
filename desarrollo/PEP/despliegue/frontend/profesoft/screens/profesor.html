@@ -13,12 +13,13 @@
 
     <header class="header">
 
-        <a href='/screens/busqueda.html' class="logo">
-            <img src="../img/logo2.png" alt="Profesoft Logo">
+        <a href='/screens/foro.html' class="logo">
+            <img src="../img/logo2.png" alt="Foro Logo">
         </a>
 
         <nav class="nav-links">
-            <a href="/screens/ajustes.html">Ajustes</a>
+            <a href="/screens/busqueda.html">Buscar profesores</a>
+            <a href="/screens/foros.html">Foros!</a>
             <a href="/screens/index.html">Cerrar sesión</a>
         </nav>
 
@@ -44,13 +45,32 @@
 
         <h2>Comentarios:</h2>
 
-        <section class="comments-section">
+        <section class="comments-section"></section>
 
+        <section class="add-comment-section">
+            <h2>Añadir un Comentario</h2>
+            <form id="add-comment-form">
+    
+                <label for="comment-rating">Calificación:</label>
+                <select id="comment-rating" required>
+                    <option value="">Seleccionar</option>
+                    <option value="5.0">5 - Excelente</option>
+                    <option value="4.0">4 - Muy Bueno</option>
+                    <option value="3.0">3 - Bueno</option>
+                    <option value="2.0">2 - Regular</option>
+                    <option value="1.0">1 - Malo</option>
+                </select>
+    
+                <label for="comment-text">Comentario:</label>
+                <textarea id="comment-text" rows="4" placeholder="Escribe tu comentario aquí..." required></textarea>
+    
+                <button type="submit">Enviar Comentario</button>
+            </form>
         </section>
 
     </main>
 
-    <script src="../js/profesor.js"></script>
+    <script type="module" src="../js/profesor.js"></script>
 </body>
 
 </html>

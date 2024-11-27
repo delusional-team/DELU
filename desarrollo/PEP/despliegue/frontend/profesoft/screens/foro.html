@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foro de Discusión</title>
+    <link rel="stylesheet" href="../css/foro.css">
+</head>
+
+<body>
+
+    <header class="header">
+
+        <a href='/screens/foro.html' class="logo">
+            <img src="../img/logo2.png" alt="Foro Logo">
+        </a>
+
+        <nav class="nav-links">
+            <a href="/screens/busqueda.html">Buscar profesores</a>
+            <a href="/screens/foros.html">Foros!</a>
+            <a href="/screens/index.html">Cerrar sesión</a>
+        </nav>
+
+    </header>
+
+    <main class="main-content">
+
+        <section class="question-section">
+
+            <div class="question-header">
+
+                <h1 class="question-title">Título de la Pregunta</h1>
+                <p class="question-author">Por: Usuario123</p>
+
+            </div>
+
+            <div class="question-body">
+                <p>Este es el contenido de la pregunta. Aquí el usuario detalla su inquietud...</p>
+            </div>
+
+        </section>
+
+        <h2>Respuestas:</h2>
+
+        <section class="answers-section">
+        </section>
+
+        <section class="add-answer-section">
+            <h2>Añadir una Respuesta</h2>
+            <form id="add-answer-form">
+
+                <label for="answer-text">Respuesta:</label>
+                <textarea id="answer-text" rows="4" placeholder="Escribe tu respuesta aquí..." required></textarea>
+
+                <button type="submit">Enviar Respuesta</button>
+            </form>
+        </section>
+
+    </main>
+
+    <script type="module" src="../js/foro.js"></script>
+</body>
+
+</html>

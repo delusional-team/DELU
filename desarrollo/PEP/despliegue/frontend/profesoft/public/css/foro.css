@@ -1,7 +1,7 @@
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: white;
+    background-color: #f9f9f9;
     color: #333;
     margin: 0;
     padding: 0;
@@ -46,113 +46,93 @@ body {
     padding: 10px;
 }
 
-/* Professor Details */
-.professor-details {
-    margin-bottom: 10px;
-    font-weight: bold;
-    border-bottom: 2.5px solid #ff9a00;
-    padding-bottom: 40px;
+/* Question Section */
+.question-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 5px;
 }
 
-.professor-header {
+.question-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 10px;
+    margin-bottom: 15px;
 }
 
-.professor-name {
+.question-title {
     font-size: 1.8em;
     font-weight: bold;
     color: #1475b6;
     margin: 0;
-    position: relative;
 }
 
-.professor-name::after {
-    content: "";
-    display: block;
-    height: 2px;
-    background-color: #f4b21a;
-    position: absolute;
-    bottom: -2px;
-    right: 0;
-    width: calc(100% - 20px);
-}
-
-.current-rating {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #f4b21a;
-}
-
-.current-rating .rating-value {
-    color: #1475b6;
-}
-
-/* Courses Section */
-.courses-section h3,
-.courses-section p {
-    margin-left: 11%;
-    margin-top: 15px;
+.question-author {
     font-size: 1em;
-    color: #000;
+    color: #888;
 }
 
-/* Comments Section */
-.comments-section {
+.question-body {
+    font-size: 1.2em;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* Answers Section */
+.answers-section {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 5px;
     max-height: 400px;
     overflow-y: auto;
-    padding-right: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    margin-top: 20px;
 }
 
 /* Scrollbar Customization */
-.comments-section::-webkit-scrollbar {
+.answers-section::-webkit-scrollbar {
     width: 8px;
 }
 
-.comments-section::-webkit-scrollbar-track {
+.answers-section::-webkit-scrollbar-track {
     background: #f1f1f1;
 }
 
-.comments-section::-webkit-scrollbar-thumb {
+.answers-section::-webkit-scrollbar-thumb {
     background: #1475b6;
     border-radius: 10px;
 }
 
-.comments-section::-webkit-scrollbar-thumb:hover {
+.answers-section::-webkit-scrollbar-thumb:hover {
     background: #125a8e;
 }
 
-/* Comments */
-.comment {
-    padding: 15px 10px;
+.answer {
+    padding: 10px 0;
     border-bottom: 1px solid #ddd;
-    background-color: #f9f9f9;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.commenter-name {
+.answer:last-child {
+    border-bottom: none;
+}
+
+.answer-author {
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 1em;
     color: #1475b6;
     margin-bottom: 5px;
 }
 
-.comment-text {
-    margin-top: 5px;
+.answer-text {
     line-height: 1.5;
-    color: #555;
+    padding-left: 20px;
     font-size: 1em;
 }
 
-/* Add Comment Section */
-.add-comment-section {
+/* Add Answer Section */
+.add-answer-section {
     margin-top: 30px;
     padding: 20px;
     border: 1px solid #ddd;
@@ -160,21 +140,19 @@ body {
     background-color: #f9f9f9;
 }
 
-.add-comment-section h2 {
+.add-answer-section h2 {
     font-size: 1.5em;
     color: #1475b6;
     margin-bottom: 15px;
 }
 
-.add-comment-section label {
+.add-answer-section label {
     font-size: 1em;
     font-weight: bold;
     margin: 10px 0 5px;
 }
 
-.add-comment-section input,
-.add-comment-section select,
-.add-comment-section textarea {
+.add-answer-section textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -182,7 +160,7 @@ body {
     margin-bottom: 15px;
 }
 
-.add-comment-section button {
+.add-answer-section button {
     background-color: #1475b6;
     color: white;
     padding: 10px 15px;
@@ -193,34 +171,72 @@ body {
     transition: background-color 0.3s;
 }
 
-.add-comment-section button:hover {
+.add-answer-section button:hover {
     background-color: #125a8e;
 }
 
 /* Media Queries */
 @media (max-width: 768px) {
-    .comments-section {
-        max-height: 250px;
+    .header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 15px 20px;
     }
 
-    .comment-text {
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .main-content {
+        max-width: 100%;
+        margin: 20px auto 0;
+        padding: 15px;
+    }
+
+    .question-title {
+        font-size: 1.4em;
+    }
+
+    .question-author {
         font-size: 0.9em;
     }
 
-    .add-comment-section {
-        margin-top: 10px;
-        padding: 15px;
+    .answer-author,
+    .answer-text {
+        font-size: 0.9em;
     }
 }
 
 @media (max-width: 480px) {
-    .comments-section {
-        max-height: 200px;
-        margin-bottom: 10px;
+    .logo img {
+        width: 150px;
+        height: 50px;
     }
 
-    .add-comment-section {
-        margin-top: 10px;
+    .nav-links a {
+        font-size: 0.9em;
+    }
+
+    .main-content {
         padding: 10px;
+    }
+
+    .question-title {
+        font-size: 1.2em;
+    }
+
+    .question-author,
+    .answer-author {
+        font-size: 0.8em;
+    }
+
+    .add-answer-section {
+        padding: 10px;
+    }
+
+    .answer-text {
+        font-size: 0.75em;
     }
 }

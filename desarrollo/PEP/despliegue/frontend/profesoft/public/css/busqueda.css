@@ -15,41 +15,41 @@ body {
     padding: 20px 140px;
 }
 
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+    color: #f4b21a;
+}
+
 .logo img {
     width: 260px;
     height: 90px;
 }
 
-.nav-links a {
-
-    color: white;
-    margin-left: 30px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.2em;
-}
-
-.nav-links a:first-child {
-    margin-right: 50px; /* Aumentar la distancia entre el primer y el segundo enlace */
-}
-
-.nav-links a:hover {
-    text-decoration: underline;
-}
-
-/* Contenedor Principal */
 .container {
     padding: 10px;
-    max-width: 85%; /* Ajusta según el ancho deseado */
-    margin: 0 auto; /* Centrar el contenedor */
+    max-width: 85%; 
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px; /* Espacio entre secciones */
+    gap: 10px;
 
 }
 
-/* Estilo para la barra de búsqueda */
 .search-bar {
     display: flex;
     align-items: center;
@@ -57,17 +57,17 @@ body {
     width: 100%;
     height: 100px;
     max-width: 100%;
-    margin-top: 60px;
-    gap: 50px; /* Espacio entre los elementos */
+    margin-top: 20px;
+    gap: 50px; 
 
 }
 
 #search {
-    width: 30%; /* Ajustar ancho */
+    width: 30%; 
     height: 55px;
     padding: 0px 20px;
-    border: 2px solid #1475b6; /* Color del borde */
-    border-radius: 10px; /* Bordes redondeados */
+    border: 2px solid #1475b6;
+    border-radius: 10px; 
     font-size: 16px;
     outline: none;
     transition: border-color 0.3s ease;
@@ -77,7 +77,6 @@ body {
     border-color: #125a8e;
 }
 
-/* Botón de Filtros */
 .filter-container {
     position: relative;
     display: inline-block;
@@ -93,7 +92,7 @@ body {
     padding: 0px 15px;
     background-color: #fff;
     color: #000;
-    border: 2px solid #1475b6; /* Color del borde */
+    border: 2px solid #1475b6; 
     border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
@@ -108,11 +107,11 @@ body {
 }
 
 .filter-btn:hover .filter-arrow {
-    color: #fff; /* Cambiar la flecha a blanco cuando esté en hover */
+    color: #fff;
 }
 
 .filter-arrow {
-    margin-left: 40px; /* Empuja la flecha hacia la derecha */
+    margin-left: 40px; 
     font-size: 20px;
     transition: transform 0.3s ease;
     color: #1475b6;
@@ -123,21 +122,21 @@ body {
     position: absolute;
     top: 100%;
     left: 50%;
-    transform: translateX(-50%); /* Centrar horizontalmente */
+    transform: translateX(-50%); 
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
-    width: 260px; /* Ajustar el ancho si es necesario */
+    width: 260px; 
     padding: 10px;
     z-index: 100;
-    text-align: center; /* Centrar el contenido */
+    text-align: center;
 }
 
 .filter-options label {
     display: block;
     padding: 5px;
     font-size: 1.2em;
-    text-align: left; /* Mantener el texto alineado a la izquierda */
+    text-align: left; 
     width: 100%;
     cursor: pointer;
 }
@@ -148,38 +147,14 @@ body {
     color: #fff;
 }
 
-/* Mostrar opciones cuando se activa el menú */
 .filter-container.active .filter-options {
     display: block;
 }
 
 .filter-container.active .filter-arrow {
-    transform: rotate(180deg); /* Girar la flecha hacia arriba */
+    transform: rotate(180deg); 
 }
 
-/* Ajuste para el botón de buscar */
-.search-btn {
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 15%;
-    height: 60px;  /* Ajustar padding para mejor proporción */
-    background-color: #1475b6;
-    color: white;
-    border: none;
-    border-radius: 10px; /* Bordes redondeados */
-    cursor: pointer;
-    font-size: 1.5em;
-    font-weight: bold;
-
-}
-
-.search-btn:hover {
-    background-color: #125a8e;
-}
-
-/* Sección de resultados completa */
 .results-section {
 
     align-items: center;
@@ -189,37 +164,34 @@ body {
 
 }
 
-/* Título de resultados */
 .results-title {
 
     font-size: 1.7em;
-    color: #1475b6; /* Color del texto */
-    margin-bottom: 10px; /* Espacio entre el título y el cuadro de resultados */
+    color: #1475b6; 
+    margin-bottom: 10px; 
     font-weight: bold;
-    border-bottom: 2.5px solid #ff9a00; /* Línea inferior opcional para destacar */
+    border-bottom: 2.5px solid #ff9a00;
     padding-bottom: 5px;
 
 }
 
-/* Cuadro de Resultados */
 .results {
     background-color: white;
-    padding: 10px 0; /* Reducir el padding superior e inferior */
+    padding: 10px 0; 
     border-radius: 10px;
-    width: 100%; /* Asegura que ocupe todo el ancho del contenedor */
+    width: 100%; 
     overflow-y: auto;
-    max-height: 480px; /* Define el tamaño máximo de la lista de resultados visibles */
-    overflow-y: auto; /* Permite el desplazamiento vertical si se excede el tamaño */
+    max-height: 480px; 
+    overflow-y: auto; 
 }
 
-/* Aplicar estilo a los títulos de los resultados dinámicos */
 .result-item h3 {
-    color: #1475b6; /* Color del texto */
-    font-size: 18px; /* Ajustar el tamaño para que coincida con el diseño */
+    color: #1475b6; 
+    font-size: 18px; 
     font-weight: bold;
-    margin: 0; /* Quitar márgenes adicionales */
-    padding-bottom: 10px; /* Espacio para la línea */
-    position: relative; /* Necesario para el pseudo-elemento */
+    margin: 0; 
+    padding-bottom: 10px; 
+    position: relative; 
 }
 
 .result-item h3::after {
@@ -227,34 +199,132 @@ body {
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 100%; /* Línea ocupa todo el ancho */
-    height: 2px; /* Grosor de la línea */
-    background-color: #1475b6; /* Color de la línea */
+    width: 100%; 
+    height: 2px;
+    background-color: #1475b6;
 }
 
 
-
-/* Alineación de los detalles */
 .details-inline {
     display: center;
-    gap: 10px; /* Espacio entre las evaluaciones y los cursos */
-    flex-wrap: wrap; /* Permitir que se ajuste en varias líneas si es necesario */
-    margin-top: 5px; /* Separación del título */
+    gap: 10px;
+    flex-wrap: wrap; 
+    margin-top: 5px; 
     margin-left: 20%;
 }
 
-/* Detalles en línea */
 .details-inline p {
     font-size: 16px;
     line-height: 1.4;
 }
 
 .professor-link {
-    color: #1475b6; /* Ajustar el color si es necesario */
+    color: #1475b6; 
     text-decoration: none;
     font-weight: bold;
 }
 
 .professor-link:hover {
-    text-decoration: underline; /* Añadir un subrayado al pasar el ratón si lo deseas */
+    text-decoration: underline; 
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        padding: 15px 20px;
+        text-align: center;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav-links a {
+        font-size: 1em;
+    }
+
+    .logo img {
+        width: 200px;
+        height: auto;
+    }
+
+    .container {
+        max-width: 90%; 
+        gap: 20px;
+    }
+
+    .search-bar {
+        flex-direction: column; 
+        gap: 15px;
+    }
+
+    #search {
+        width: 100%; 
+    }
+
+    .filter-btn {
+        width: 100%; 
+        font-size: 1.2em;
+    }
+
+    .filter-options {
+        width: 100%; 
+    }
+
+    .results-title {
+        font-size: 1.5em; 
+        text-align: center; 
+    }
+
+    .results {
+        max-height: 400px;
+    }
+
+    .details-inline {
+        margin-left: 0;
+        justify-content: center; 
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 10px;
+    }
+
+    .logo img {
+        width: 150px; 
+    }
+
+    .nav-links a {
+        font-size: 0.9em; 
+        margin-left: 10px;
+    }
+
+    .search-bar {
+        gap: 10px; 
+    }
+
+    #search {
+        height: 45px;
+        width: 80%;
+        font-size: 14px;
+    }
+
+    .filter-btn {
+        height: 50px;
+        font-size: 1em;
+    }
+
+    .results-title {
+        font-size: 1.2em;
+    }
+
+    .results {
+        flex: 1;
+    }
+
+    .result-item h3 {
+        font-size: 16px; 
+    }
 }

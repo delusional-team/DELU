@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foros</title>
+    <link rel="stylesheet" href="../css/foros.css">
+</head>
+
+<body>
+    <header class="header">
+
+        <a href='/screens/foro.html' class="logo">
+            <img src="../img/logo2.png" alt="Foro Logo">
+        </a>
+
+        <nav class="nav-links">
+            <a href="/screens/busqueda.html">Buscar profesores</a>
+            <a href="/screens/foros.html">Foros!</a>
+            <a href="/screens/index.html">Cerrar sesión</a>
+        </nav>
+
+    </header>
+    <main class="main-content">
+        <h1>Lista de Foros</h1>
+        <section id="forums-list">
+        </section>
+
+        <button id="create-forum-btn">Crear Foro</button>
+
+        <div id="create-forum-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Crear un nuevo foro</h2>
+                <form id="create-forum-form">
+                    <label for="forum-title">Título:</label>
+                    <input type="text" id="forum-title" placeholder="Escribe el título aquí..." required>
+                    
+                    <label for="forum-question">Pregunta:</label>
+                    <textarea id="forum-question" rows="4" placeholder="Escribe tu pregunta aquí..." required></textarea>
+
+                    <button type="submit">Publicar</button>
+                </form>
+                <button id="close-modal-btn">Cerrar</button>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="../js/foros.js"></script>
+</body>
+
+</html>
