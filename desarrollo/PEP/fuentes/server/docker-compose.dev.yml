@@ -1,0 +1,17 @@
+services:
+  pep_postgres:
+    image: 'postgres:latest'
+    user: 'root'
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: delusional
+      POSTGRES_DB: profesoftDB
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
