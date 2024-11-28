@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profesoft - Iniciar Sesión</title>
+    <link rel="stylesheet" href="profesoft/public/css/styles.css">
+    <link rel="stylesheet" href="profesoft/public/css/registro.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Container para la sección de fondo -->
+    <div class="container">
+        <div class="background-right"></div>
+        <div class="background-left"></div>
+    </div>
+
+    <!-- Container para el SlideBox que maneja el Login y el Sign Up -->
+    <div class="container">
+
+        <div class="logo">
+            <img src="profesoft/public/img/logo2.png" alt="Logo 1">
+        </div>
+
+        <div class="form-container">
+
+            <form class="register-form">
+                <h2 class="form-title">Registro:</h2>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="username">Nombre del usuario:</label>
+                        <input type="text" id="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Contraseña:</label>
+                        <input type="password" id="password">
+                    </div>
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        
+                        <label for="email">Correo electrónico:</label>
+
+                        <div class="email-wrapper">
+                            <input type="text" id="email">
+                            <span class="email-domain">@unmsm.edu.pe</span>
+                        </div>
+
+                        <!-- Enlaces de Política de Privacidad y Términos y Condiciones -->
+                         
+                        <div class="terms-subtitle">
+                            <a href="#" class="terms-link">Política de privacidad.</a><br>
+                            <a href="#" class="terms-link">Términos y condiciones de uso.</a>
+                        </div>
+
+                        <div class="form-terms">
+                            <input type="checkbox" id="privacy-policy">
+                            <label for="privacy-policy">He leído y acepto las políticas de privacidad.</label><br>
+                            <input type="checkbox" id="terms-conditions">
+                            <label for="terms-conditions">He leído y acepto los términos y condiciones de uso.</label><br>
+                            <input type="checkbox" id="email-confirmation">
+                            <label for="email-confirmation">Acepto recibir un correo electrónico de confirmación para validar mi cuenta.</label>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="confirm-password">Confirmar contraseña:</label>
+                        <input type="password" id="confirm-password">
+
+                        <div class="show-password">
+                            <input type="checkbox" id="show-password"> Mostrar contraseña
+                        </div>
+
+                        <div class="form-button">
+                            <button type="button" class="btn-register" onclick="location.href='index.html'">Registrarme</button>
+                        </div>                        
+
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <script src="profesoft/src/registro.js"></script>
+
+</body>
+
+</html>
