@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const url = import.meta.env.VITE_HOST_URL;
-    const API_URL = `${url}/profesoft/professors`;
+    const API_URL = `/profesoft/professors`;
     let professors = [];
 
     fetch(API_URL)

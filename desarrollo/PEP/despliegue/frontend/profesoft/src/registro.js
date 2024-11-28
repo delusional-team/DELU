@@ -1,5 +1,3 @@
-const url = import.meta.env.VITE_HOST_URL;
-
 document.addEventListener('DOMContentLoaded', function () {
     const showPasswordCheckbox = document.getElementById('show-password');
     const passwordInput = document.getElementById('password');
@@ -34,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         try {
-            const response = await fetch(`${url}/profesoft/register`, {
+            const response = await fetch(`/profesoft/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
