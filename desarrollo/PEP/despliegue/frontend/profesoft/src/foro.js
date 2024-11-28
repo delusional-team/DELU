@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
     const questionId = urlParams.get('id');
 
-    const questionApiUrl = `/profesoft/forum/posts/${questionId}`;
-    const commentsApiUrl = `/profesoft/forum/posts/${questionId}/comments`;
+    const questionApiUrl = `https://pandadiestro.xyz/services/pep/profesoft/forum/posts/${questionId}`;
+    const commentsApiUrl = `https://pandadiestro.xyz/services/pep/profesoft/forum/posts/${questionId}/comments`;
 
     // Obtener datos de la pregunta
     fetch(questionApiUrl)
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const answerText = document.getElementById('answer-text').value;
         const token = localStorage.getItem('jwt');
 
-        fetch(`/profesoft/forum/posts/${questionId}/comments`, {
+        fetch(`https://pandadiestro.xyz/services/pep/profesoft/forum/posts/${questionId}/comments`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

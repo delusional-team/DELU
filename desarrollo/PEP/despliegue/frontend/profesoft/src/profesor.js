@@ -2,9 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
     const professorId = urlParams.get('id');
 
-    const professorApiUrl = `/profesoft/professors?id=${professorId}`;
-    const commentsApiUrl = `/profesoft/professor/${professorId}/comments`;
-    const submitCommentApiUrl = `/profesoft/professor/${professorId}/comments`;
+    const professorApiUrl = `https://pandadiestro.xyz/services/pep/profesoft/professors?id=${professorId}`;
+    const commentsApiUrl = `https://pandadiestro.xyz/services/pep/profesoft/professor/${professorId}/comments`;
+    const submitCommentApiUrl = `https://pandadiestro.xyz/services/pep/profesoft/professor/${professorId}/comments`;
 
     const commentsSection = document.querySelector('.comments-section');
     const addCommentForm = document.getElementById('add-comment-form');

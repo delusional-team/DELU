@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const API_URL = `/profesoft/professors`;
+    const API_URL = `https://pandadiestro.xyz/services/pep/profesoft/professors`;
     let professors = [];
 
     fetch(API_URL)
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             resultItem.innerHTML = `
                 <div class="result-details">
-                    <h3><a href="profesor.html?id=${encodeURIComponent(result.id)}" class="professor-link">${result.name}</a></h3>
+                    <h3><a href="/profesor/index.html?id=${encodeURIComponent(result.id)}" class="professor-link">${result.name}</a></h3>
                     <div class="details-inline">
                         <p><strong>Calificación:</strong> ${result.evaluations}</p>
                         <p><strong>Cursos disponibles:</strong> ${result.courses}</p>

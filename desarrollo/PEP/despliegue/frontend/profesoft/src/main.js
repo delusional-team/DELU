@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 password: password
             });
 
-            xhr.open("POST", `/profesoft/login`, true);
+            xhr.open("POST", `https://pandadiestro.xyz/services/pep/profesoft/login`, true);
             xhr.setRequestHeader("Content-Type", "application/json");
             console.log("Hola")
             xhr.onreadystatechange = function () {
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         alert("Inicio de sesión exitoso");
                         console.log("Token recibido:", response.token);
                         localStorage.setItem("jwt", response.token);
-                        window.location.href = "/screens/busqueda.html";
+                        window.location.href = "/busqueda/";
                     } else if (xhr.status === 401) {
                         alert("Credenciales inválidas. Por favor, verifica tu correo y contraseña.");
                     } else {

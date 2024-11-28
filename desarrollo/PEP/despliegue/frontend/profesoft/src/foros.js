@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const apiUrl = `/profesoft/forum/posts`;
+    const apiUrl = `https://pandadiestro.xyz/services/pep/profesoft/forum/posts`;
     const forumsList = document.getElementById("forums-list");
     const createForumBtn = document.getElementById("create-forum-btn");
     const modal = document.getElementById("create-forum-modal");
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
 
             forumElement.addEventListener("click", () => {
-                window.location.href = `foro.html?id=${forum.id}`;
+                window.location.href = `/foro/index.html?id=${forum.id}`;
             });
 
             forumsList.appendChild(forumElement);
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const token = localStorage.getItem('jwt');
 
-        fetch(`/profesoft/forum/posts`, {
+        fetch(`https://pandadiestro.xyz/services/pep/profesoft/forum/posts`, {
             method: "POST",
             headers: { 
                 "Content-Type": "application/json",

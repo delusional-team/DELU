@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         try {
-            const response = await fetch(`/profesoft/register`, {
+            const response = await fetch(`https://pandadiestro.xyz/services/pep/profesoft/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (response.status === 201) {
                 messageDiv.textContent = 'Cuenta creada exitosamente.';
                 messageDiv.style.color = 'green';
-                window.location.href = "/screens/login.html"; 
+                window.location.href = "/login/"; 
             } else if (response.status === 400) {
                 const errorData = await response.json();
                 messageDiv.textContent = `Error: ${errorData.message || 'Credenciales inválidas.'}`;

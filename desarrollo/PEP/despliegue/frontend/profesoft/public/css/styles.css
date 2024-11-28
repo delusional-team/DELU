@@ -6,8 +6,7 @@
 }
 
 body {
-   
-    background-image: url('../img/fisi.jpg');
+    background-image: url('/img/fisi.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
