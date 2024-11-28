@@ -9,6 +9,9 @@
 </head>
 
 <body>
+
+    <!-- Cabecera de la página con el logo y el menú de navegación -->
+
     <header class="header">
 
         <a href='/screens/foro.html' class="logo">
@@ -22,12 +25,20 @@
         </nav>
 
     </header>
+
+
     <main class="main-content">
+
         <h1>Lista de Foros</h1>
+
+        <!-- Sección donde se mostrarán los foros disponibles -->
+
         <section id="forums-list">
         </section>
 
         <button id="create-forum-btn">Crear Foro</button>
+
+        <!-- Modal para la creación de un nuevo foro, inicialmente oculto -->
 
         <div id="create-forum-modal" class="modal hidden">
             <div class="modal-content">
@@ -44,6 +55,7 @@
                 <button id="close-modal-btn">Cerrar</button>
             </div>
         </div>
+        
     </main>
 
     <script type="module" src="../js/foros.js"></script>
