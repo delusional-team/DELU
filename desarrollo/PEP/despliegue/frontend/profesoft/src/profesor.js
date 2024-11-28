@@ -2,10 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
     const professorId = urlParams.get('id');
 
-    const url = import.meta.env.VITE_HOST_URL;
-    const professorApiUrl = `${url}/profesoft/professors?id=${professorId}`;
-    const commentsApiUrl = `${url}/profesoft/professor/${professorId}/comments`;
-    const submitCommentApiUrl = `${url}/profesoft/professor/${professorId}/comments`;
+    const professorApiUrl = `/profesoft/professors?id=${professorId}`;
+    const commentsApiUrl = `/profesoft/professor/${professorId}/comments`;
+    const submitCommentApiUrl = `/profesoft/professor/${professorId}/comments`;
 
     const commentsSection = document.querySelector('.comments-section');
     const addCommentForm = document.getElementById('add-comment-form');

@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const url = import.meta.env.VITE_HOST_URL; 
-    const apiUrl = `${url}/profesoft/forum/posts`;
+    const apiUrl = `/profesoft/forum/posts`;
     const forumsList = document.getElementById("forums-list");
     const createForumBtn = document.getElementById("create-forum-btn");
     const modal = document.getElementById("create-forum-modal");
@@ -59,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const token = localStorage.getItem('jwt');
 
-        fetch(`${url}/profesoft/forum/posts`, {
+        fetch(`/profesoft/forum/posts`, {
             method: "POST",
             headers: { 
                 "Content-Type": "application/json",

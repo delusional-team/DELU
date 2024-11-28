@@ -3,9 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
     const questionId = urlParams.get('id');
 
-    const url = import.meta.env.VITE_HOST_URL; 
-    const questionApiUrl = `${url}/profesoft/forum/posts/${questionId}`;
-    const commentsApiUrl = `${url}/profesoft/forum/posts/${questionId}/comments`;
+    const questionApiUrl = `/profesoft/forum/posts/${questionId}`;
+    const commentsApiUrl = `/profesoft/forum/posts/${questionId}/comments`;
 
     // Obtener datos de la pregunta
     fetch(questionApiUrl)
@@ -61,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const answerText = document.getElementById('answer-text').value;
         const token = localStorage.getItem('jwt');
 
-        fetch(`${url}/profesoft/forum/posts/${questionId}/comments`, {
+        fetch(`/profesoft/forum/posts/${questionId}/comments`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

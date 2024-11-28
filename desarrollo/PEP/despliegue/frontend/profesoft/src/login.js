@@ -9,13 +9,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (email && password) {
             const xhr = new XMLHttpRequest();
-            const url = import.meta.env.VITE_HOST_URL; 
             const requestBody = JSON.stringify({
                 email: `${email}`, 
                 password: password
             });
 
-            xhr.open("POST", `${url}/profesoft/login`, true);
+            xhr.open("POST", `/profesoft/login`, true);
             xhr.setRequestHeader("Content-Type", "application/json");
             console.log("Hola")
             xhr.onreadystatechange = function () {
